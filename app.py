@@ -291,7 +291,7 @@ def grapher_bairro(df,selected_bairro,selected_crime):
         )
         fig_bairro.update_layout(
         title=dict(
-        text=f"<span style='font-size: 14px; color:dimgray;'><b>{selected_bairro} comparado aos bairros com maior volume de incidentes</b></span><br><span style='font-size: 13px; color: gray;'>Considerando registros de crimes de {selected_crime or "todos os tipos"}</span>",
+        text=f"<span style='font-size: 14px; color:dimgray;'><b>{selected_bairro} comparado aos bairros com maior volume de incidentes</b></span><br><span style='font-size: 13px; color: gray;'>Considerando registros de crimes de {selected_crime or 'todos os tipos'}</span>",
         ),
         yaxis=dict(showticklabels=False),
         showlegend=False,
