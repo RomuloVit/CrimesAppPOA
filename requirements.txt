@@ -8,3 +8,4 @@ numpy==1.26.3
 pandas==2.1.4
 plotly==5.22.0
 plotly-express==0.4.1
+gunicorn==19.7.1
