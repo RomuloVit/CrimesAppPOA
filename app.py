@@ -6,14 +6,17 @@ import geopandas as gpd
 import pandas as pd
 import locale
 import calendar
-import platform
+import os
 
+# Defina o locale manualmente
+os.environ["LC_ALL"] = "pt_BR.UTF-8"
+os.environ["LANG"] = "pt_BR.UTF-8"
 
-
-if platform.system() == "Windows":
-    locale.setlocale(locale.LC_TIME, "Portuguese_Brazil.1252")
-else:
+try:
     locale.setlocale(locale.LC_TIME, "pt_BR.UTF-8")
+except locale.Error:
+    print("Aviso: Locale pt_BR.UTF-8 não está disponível. Usando configuração padrão.")
+
 
 # Carregar os dados
 df_crimes_base = pd.read_csv('crimesPOA_15_12_24.csv')
