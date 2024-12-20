@@ -6,6 +6,12 @@ import geopandas as gpd
 import pandas as pd
 import locale
 import calendar
+import platform
+
+if platform.system() == "Windows":
+    locale.setlocale(locale.LC_TIME, "Portuguese_Brazil.1252")
+else:
+    locale.setlocale(locale.LC_TIME, "pt_BR.UTF-8")
 
 # Carregar os dados
 df_crimes_base = pd.read_csv('crimesPOA_15_12_24.csv')
@@ -32,7 +38,6 @@ data_geo_base["Bairro"] = data_geo_base["Bairro"].apply(format_name)
 selected_bairro = None
 selected_tempo = "Ano"
 
-locale.setlocale(locale.LC_TIME, "Portuguese_Brazil.1252")  # Para sistemas Windows ou Linux
 df_crimes = df_crimes_base.copy()
 # Garantir que "Data Fato" seja tratada como datetime
 df_crimes['Data Fato'] = pd.to_datetime(df_crimes['Data Fato'], format='%d/%m/%Y')
