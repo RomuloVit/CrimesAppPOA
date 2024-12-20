@@ -835,6 +835,8 @@ def update_graphs(selected_bairro, selected_crime, btn_ano, btn_mes_ano, btn_mes
     
     return fig_mapa,texto_bairro, render_explanation(selected_crime), fig_bairro, fig_tempo, fig_tipo, fig_local
 
+server = app.server  # Esta linha é importante para o Gunicorn
+
 # Rodar o servidor
 if __name__ == '__main__':
     app.run_server(debug=False)
