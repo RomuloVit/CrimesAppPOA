@@ -35,6 +35,7 @@ def format_name(name):
 
 # Aplicar a formatação à coluna "CBairro"
 data_geo_base["Bairro"] = data_geo_base["Bairro"].apply(format_name)
+data_geo_base['geometry'] = data_geo_base['geometry'].simplify(tolerance=0.001, preserve_topology=True)
 
 # Processar os dados para os gráficos
 #crimes_bairro = df_crimes_base.groupby('CBairro')['Incidente_ID'].nunique().reset_index(name='Incidentes')
