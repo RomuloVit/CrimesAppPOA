@@ -469,7 +469,7 @@ def grapher_tempo(df, x_col, selected_crime, selected_bairro, selected_tempo):
             plot_bgcolor="white",
             hovermode='x unified',
             legend_title="Tipo" if selected_bairro else None,
-            height=420,
+            height=410,
             margin=dict(l=50, r=30, t=80, b=30),
         )
 
@@ -498,7 +498,7 @@ def grapher_tempo(df, x_col, selected_crime, selected_bairro, selected_tempo):
             plot_bgcolor="white",
             hovermode='x unified',
             legend_title="Tipo" if selected_bairro else None,
-            height=420,
+            height=410,
             margin=dict(l=50, r=30, t=80, b=30),
         )
 
@@ -608,7 +608,7 @@ app.layout = dbc.Container([
                     html.P(style={"textAlign": "center", "marginBottom": "20px"}, id="markdown_explanation")
                 ]
             ),
-            sm=10,md=4,lg=4
+            sm=10,md=8,lg=8
         ),
     style={"textAlign": "center", "marginBottom": "20px","justifyContent": "center"}),
 
@@ -619,7 +619,7 @@ app.layout = dbc.Container([
         [
             dbc.Col(
                 dcc.Graph(figure=fig_bairro, id="graph"),
-                sm=6,md=4,lg=4,  # Ocupa metade da largura
+                sm=6,md=6,lg=6,  # Ocupa metade da largura
                 style={"backgroundColor": "#CDE2CC", "padding": "20px"}
             ),
             dbc.Col([
@@ -636,7 +636,7 @@ app.layout = dbc.Container([
                         ],
                     ),
                 ],
-                sm=6,md=4,lg=4,  # Ocupa metade da largura
+                sm=6,md=6,lg=6,  # Ocupa metade da largura
                 style={"backgroundColor": "#CDE2CC", "padding": "20px"}
             ),
         ],
@@ -648,12 +648,12 @@ app.layout = dbc.Container([
         [
             dbc.Col(
                 dcc.Graph(figure=fig_tipo, id="graph_tipo"),
-                sm=6,md=4,lg=4,  # Ocupa metade da largura
+                sm=6,md=6,lg=6,  # Ocupa metade da largura
                 style={"backgroundColor": "#CDE2CC", "padding": "20px"}
             ),
             dbc.Col(
                 dcc.Graph(figure=fig_local, id="graph_local"),
-                sm=6,md=4,lg=4,  # Ocupa metade da largura
+                sm=6,md=6,lg=6,  # Ocupa metade da largura
                 style={"backgroundColor": "#CDE2CC", "padding": "20px"}
             ),
         ],
