@@ -1,3 +1,4 @@
+chmod +x start.sh && ./start.sh
 import dash
 from dash import dcc, html, Input, Output
 import plotly.express as px
@@ -7,6 +8,8 @@ import pandas as pd
 import locale
 import calendar
 import platform
+
+
 
 if platform.system() == "Windows":
     locale.setlocale(locale.LC_TIME, "Portuguese_Brazil.1252")
