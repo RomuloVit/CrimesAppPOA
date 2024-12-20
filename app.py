@@ -56,9 +56,6 @@ calendario['Dia da Semana'] = calendario['Data'].dt.weekday.map(
 calendario['Mensal'] = calendario['Data'].dt.to_period('M').astype(str)
 
 def agreg_tempo(df, selected_tempo, selected_bairro):
-    # Configuração de idioma para meses e dias em português
-    locale.setlocale(locale.LC_TIME, "Portuguese_Brazil.1252")  # Para sistemas Windows ou Linux
-
     # Garantir que "Data Fato" seja tratada como datetime
     df['Data Fato'] = pd.to_datetime(df['Data Fato'], format='%d/%m/%Y')
 
