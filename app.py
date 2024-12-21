@@ -297,7 +297,7 @@ def grapher_local(df,selected_bairro,selected_crime):
                 labels={'Valor': 'Participação (%)', 'Crime': 'Tipo de Crime', 'Métrica': 'Legenda'}
                 )
         fig_local = fig_local.update_layout(
-            height=600,  # Ajuste a altura do gráfico
+            
             margin=dict(l=50, r=30, t=80, b=30),  # Ajuste as margens para melhor visualização
             title=dict(
                 text=f"<span style='font-size: 14px; color:dimgray;'><b>Perfil dos locais de crimes de Porto Alegre</b></span><br>"
@@ -343,7 +343,7 @@ def grapher_local(df,selected_bairro,selected_crime):
                 text=f"<span style='font-size: 14px; color:dimgray;'><b>Perfil de locais de crime de {selected_bairro} comparado com todos os bairros</b></span><br>"
                 + f"<span style='font-size: 13px; color: gray;'>Participação por local no número total de incidentes de {selected_crime or 'todos os tipos'}"
             ),
-            height=600,  # Ajuste a altura do gráfico
+            
             margin=dict(l=50, r=30, t=80, b=30),  # Ajuste as margens para melhor visualização
             xaxis=dict(showticklabels=False)
             )
@@ -382,7 +382,6 @@ def grapher_tipo(df,selected_bairro):
             title=dict(
                 text="<span style='font-size: 14px; color:dimgray;'><b>Número total de incidentes por tipo de crime em todos os bairros</b></span>",
             ),
-            height=600,  # Ajuste a altura do gráfico
             margin=dict(l=50, r=30, t=80, b=30),  # Ajuste as margens para melhor visualização
             xaxis=dict(showticklabels=False)
         )
@@ -426,7 +425,6 @@ def grapher_tipo(df,selected_bairro):
                 text=f"<span style='font-size: 14px; color:dimgray;'><b>Perfil de tipos de crime de {selected_bairro} comparado com todos os bairros</b></span><br><span style='font-size: 13px; color: gray;'>Participação por tipo de crime no total de crimes do bairro</span>",
                 ),
             yaxis={"dtick":1},
-            height=600,  # Ajuste a altura do gráfico
             margin=dict(l=50, r=30, t=80, b=30),  # Ajuste as margens para melhor visualização
             xaxis=dict(showticklabels=False)
             #bargap = 0.02
