@@ -14,7 +14,7 @@ df_crimes = df_crimes_base.copy()
 
 # Carregar os dados
 data_geo_base = gpd.read_file("data_geo.shp")
-data_geo_base["geometry"] = data_geo_base.simplify(300)
+data_geo_base["geometry"] = data_geo_base.simplify(200)
 
 def format_name(name):
     exceptions = {"de", "do", "da", "dos", "das"}
@@ -298,7 +298,7 @@ def grapher_local(df,selected_bairro,selected_crime):
                 )
         fig_local = fig_local.update_layout(
             
-            margin=dict(l=50, r=30, t=80, b=30),  # Ajuste as margens para melhor visualização
+            margin=dict(l=10,r=10,t=10,b=10),  # Ajuste as margens para melhor visualização
             title=dict(
                 text=f"<span style='font-size: 14px; color:dimgray;'><b>Perfil dos locais de crimes de Porto Alegre</b></span><br>"
                 + f"<span style='font-size: 13px; color: gray;'>Participação por local no total de crimes de todos os bairros"
@@ -344,7 +344,7 @@ def grapher_local(df,selected_bairro,selected_crime):
                 + f"<span style='font-size: 13px; color: gray;'>Participação por local no número total de incidentes de {selected_crime or 'todos os tipos'}"
             ),
             
-            margin=dict(l=50, r=30, t=80, b=30),  # Ajuste as margens para melhor visualização
+            margin=dict(l=10,r=10,t=10,b=10),  # Ajuste as margens para melhor visualização
             xaxis=dict(showticklabels=False)
             )
         
@@ -382,7 +382,7 @@ def grapher_tipo(df,selected_bairro):
             title=dict(
                 text="<span style='font-size: 14px; color:dimgray;'><b>Número total de incidentes por tipo de crime em todos os bairros</b></span>",
             ),
-            margin=dict(l=50, r=30, t=80, b=30),  # Ajuste as margens para melhor visualização
+            margin=dict(l=10,r=10,t=10,b=10),  # Ajuste as margens para melhor visualização
             xaxis=dict(showticklabels=False)
         )
 
@@ -425,7 +425,7 @@ def grapher_tipo(df,selected_bairro):
                 text=f"<span style='font-size: 14px; color:dimgray;'><b>Perfil de tipos de crime de {selected_bairro} comparado com todos os bairros</b></span><br><span style='font-size: 13px; color: gray;'>Participação por tipo de crime no total de crimes do bairro</span>",
                 ),
             yaxis={"dtick":1},
-            margin=dict(l=50, r=30, t=80, b=30),  # Ajuste as margens para melhor visualização
+            margin=dict(l=10,r=10,t=10,b=10),  # Ajuste as margens para melhor visualização
             xaxis=dict(showticklabels=False)
             #bargap = 0.02
         )
@@ -468,8 +468,8 @@ def grapher_tempo(df, x_col, selected_crime, selected_bairro, selected_tempo):
             plot_bgcolor="white",
             hovermode='x unified',
             legend_title="Tipo" if selected_bairro else None,
-            height=415,
-            margin=dict(l=50, r=30, t=80, b=30),
+            height=416,
+            margin=dict(l=10,r=10,t=10,b=10),
         )
 
     else:
@@ -493,12 +493,12 @@ def grapher_tempo(df, x_col, selected_crime, selected_bairro, selected_tempo):
                 title='Periodo',
                 showgrid=False
             ),
-            yaxis=dict(showgrid=False),
+            yaxis=dict(showgrid=False,range=[0, None]),
             plot_bgcolor="white",
             hovermode='x unified',
             legend_title="Tipo" if selected_bairro else None,
-            height=415,
-            margin=dict(l=50, r=30, t=80, b=30),
+            height=416,
+            margin=dict(l=10,r=10,t=10,b=10),
         )
 
     # Caso `selected_bairro` seja `None`, defina a cor manualmente para cinza
