@@ -469,7 +469,7 @@ def grapher_tempo(df, x_col, selected_crime, selected_bairro, selected_tempo):
             plot_bgcolor="white",
             hovermode='x unified',
             legend_title="Tipo" if selected_bairro else None,
-            height=410,
+            height=415,
             margin=dict(l=50, r=30, t=80, b=30),
         )
 
@@ -498,7 +498,7 @@ def grapher_tempo(df, x_col, selected_crime, selected_bairro, selected_tempo):
             plot_bgcolor="white",
             hovermode='x unified',
             legend_title="Tipo" if selected_bairro else None,
-            height=410,
+            height=415,
             margin=dict(l=50, r=30, t=80, b=30),
         )
 
@@ -768,7 +768,7 @@ def update_graphs(selected_bairro, selected_crime, btn_ano, btn_mes_ano, btn_mes
     fig_mapa.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0},
     coloraxis_colorbar=dict(
         title="Incidentes",
-        tickformat=",",  # Usar separador de milhares
+        tickformat=".",  # Usar separador de milhares
         ticks="outside",  # Opcional, para manter os ticks externos
     ))
     fig_mapa.update_traces(hovertemplate="<b>%{hovertext}</b><br>Incidentes: %{customdata[0]}")
