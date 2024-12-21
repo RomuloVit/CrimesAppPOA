@@ -219,7 +219,7 @@ def grapher_bairro(df,selected_bairro,selected_crime):
         fig_bairro.update_traces(marker_color="gray")
         fig_bairro.update_layout(
         title=dict(
-        text=f"<span style='font-size: 14px; color:dimgray;'><b>Os 5 bairros de Porto Alegre com maior volume de incidentes</span></b><br><span style='font-size: 13px; color: gray;'>Considerando os incidentes de {selected_crime or "todos os tipos de crime"}</span>",
+        text=f"<span style='font-size: 14px; color:dimgray;'><b>Os 5 bairros de Porto Alegre com maior volume de incidentes</span></b><br><span style='font-size: 13px; color: gray;'>Considerando os incidentes de {selected_crime or 'todos os tipos de crime'}</span>",
         ),
         yaxis=dict(showticklabels=False)
         )
@@ -263,7 +263,7 @@ def grapher_bairro(df,selected_bairro,selected_crime):
         )
         fig_bairro.update_layout(
         title=dict(
-        text=f"<span style='font-size: 14px; color:dimgray;'><b>{selected_bairro} comparado aos bairros com maior volume de incidentes</b></span><br><span style='font-size: 13px; color: gray;'>Considerando registros de crimes de {selected_crime or "todos os tipos"}</span>",
+        text=f"<span style='font-size: 14px; color:dimgray;'><b>{selected_bairro} comparado aos bairros com maior volume de incidentes</b></span><br><span style='font-size: 13px; color: gray;'>Considerando registros de crimes de {selected_crime or 'todos os tipos'}</span>",
         ),
         yaxis=dict(showticklabels=False),
         showlegend=False,
@@ -342,7 +342,7 @@ def grapher_local(df,selected_bairro,selected_crime):
         fig_local.update_layout(
             title=dict(
                 text=f"<span style='font-size: 14px; color:dimgray;'><b>Perfil de locais de crime de {selected_bairro} comparado com todos os bairros</b></span><br>"
-                + f"<span style='font-size: 13px; color: gray;'>Participação por local no número total de incidentes de {selected_crime or "todos os tipos"}"
+                + f"<span style='font-size: 13px; color: gray;'>Participação por local no número total de incidentes de {selected_crime or 'todos os tipos'}"
             ),
             height=600,  # Ajuste a altura do gráfico
             margin=dict(l=50, r=30, t=80, b=30),  # Ajuste as margens para melhor visualização
