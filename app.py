@@ -219,7 +219,7 @@ def grapher_bairro(df,selected_bairro,selected_crime):
         fig_bairro.update_traces(marker_color="gray")
         fig_bairro.update_layout(
         title=dict(
-        text=f"<span style='font-size: 14px; color:dimgray;'><b>Os 5 bairros de Porto Alegre com maior volume de incidentes</span></b><br><span style='font-size: 13px; color: gray;'>Considerando os incidentes de {selected_crime or 'todos os tipos de crime'}</span>",
+        text=f"<span style='font-size: 14px; color:dimgray;'><b>Os 5 bairros de Porto Alegre com maior volume de incidentes</span></b><br><span style='font-size: 13px; color: gray;'>Considerando os incidentes de {selected_crime or "todos os tipos de crime"}</span>",
         ),
         yaxis=dict(showticklabels=False)
         )
@@ -263,7 +263,7 @@ def grapher_bairro(df,selected_bairro,selected_crime):
         )
         fig_bairro.update_layout(
         title=dict(
-        text=f"<span style='font-size: 14px; color:dimgray;'><b>{selected_bairro} comparado aos bairros com maior volume de incidentes</b></span><br><span style='font-size: 13px; color: gray;'>Considerando registros de crimes de {selected_crime or 'todos os tipos'}</span>",
+        text=f"<span style='font-size: 14px; color:dimgray;'><b>{selected_bairro} comparado aos bairros com maior volume de incidentes</b></span><br><span style='font-size: 13px; color: gray;'>Considerando registros de crimes de {selected_crime or "todos os tipos"}</span>",
         ),
         yaxis=dict(showticklabels=False),
         showlegend=False,
@@ -272,7 +272,8 @@ def grapher_bairro(df,selected_bairro,selected_crime):
 
 
 # Configuração do layout
-    fig_bairro = fig_update(fig_bairro)  
+    fig_bairro = fig_update(fig_bairro)
+    fig_bairro = fig_bairro.update_layout(margin=dict(l=50, r=30, t=80, b=30)) 
     return(fig_bairro)
 
 def grapher_local(df,selected_bairro,selected_crime):
@@ -297,8 +298,8 @@ def grapher_local(df,selected_bairro,selected_crime):
                 labels={'Valor': 'Participação (%)', 'Crime': 'Tipo de Crime', 'Métrica': 'Legenda'}
                 )
         fig_local = fig_local.update_layout(
-            
-            margin=dict(l=10,r=10,t=10,b=10),  # Ajuste as margens para melhor visualização
+            height=600,  # Ajuste a altura do gráfico
+            margin=dict(l=50, r=30, t=80, b=30),  # Ajuste as margens para melhor visualização
             title=dict(
                 text=f"<span style='font-size: 14px; color:dimgray;'><b>Perfil dos locais de crimes de Porto Alegre</b></span><br>"
                 + f"<span style='font-size: 13px; color: gray;'>Participação por local no total de crimes de todos os bairros"
@@ -341,10 +342,10 @@ def grapher_local(df,selected_bairro,selected_crime):
         fig_local.update_layout(
             title=dict(
                 text=f"<span style='font-size: 14px; color:dimgray;'><b>Perfil de locais de crime de {selected_bairro} comparado com todos os bairros</b></span><br>"
-                + f"<span style='font-size: 13px; color: gray;'>Participação por local no número total de incidentes de {selected_crime or 'todos os tipos'}"
+                + f"<span style='font-size: 13px; color: gray;'>Participação por local no número total de incidentes de {selected_crime or "todos os tipos"}"
             ),
-            
-            margin=dict(l=10,r=10,t=10,b=10),  # Ajuste as margens para melhor visualização
+            height=600,  # Ajuste a altura do gráfico
+            margin=dict(l=50, r=30, t=80, b=30),  # Ajuste as margens para melhor visualização
             xaxis=dict(showticklabels=False)
             )
         
@@ -382,7 +383,8 @@ def grapher_tipo(df,selected_bairro):
             title=dict(
                 text="<span style='font-size: 14px; color:dimgray;'><b>Número total de incidentes por tipo de crime em todos os bairros</b></span>",
             ),
-            margin=dict(l=10,r=10,t=10,b=10),  # Ajuste as margens para melhor visualização
+            height=600,  # Ajuste a altura do gráfico
+            margin=dict(l=50, r=30, t=80, b=30),  # Ajuste as margens para melhor visualização
             xaxis=dict(showticklabels=False)
         )
 
@@ -425,7 +427,8 @@ def grapher_tipo(df,selected_bairro):
                 text=f"<span style='font-size: 14px; color:dimgray;'><b>Perfil de tipos de crime de {selected_bairro} comparado com todos os bairros</b></span><br><span style='font-size: 13px; color: gray;'>Participação por tipo de crime no total de crimes do bairro</span>",
                 ),
             yaxis={"dtick":1},
-            margin=dict(l=10,r=10,t=10,b=10),  # Ajuste as margens para melhor visualização
+            height=600,  # Ajuste a altura do gráfico
+            margin=dict(l=50, r=30, t=80, b=30),  # Ajuste as margens para melhor visualização
             xaxis=dict(showticklabels=False)
             #bargap = 0.02
         )
@@ -468,8 +471,7 @@ def grapher_tempo(df, x_col, selected_crime, selected_bairro, selected_tempo):
             plot_bgcolor="white",
             hovermode='x unified',
             legend_title="Tipo" if selected_bairro else None,
-            height=416,
-            margin=dict(l=10,r=10,t=10,b=10),
+            margin=dict(l=50, r=30, t=80, b=30),
         )
 
     else:
@@ -493,12 +495,11 @@ def grapher_tempo(df, x_col, selected_crime, selected_bairro, selected_tempo):
                 title='Periodo',
                 showgrid=False
             ),
-            yaxis=dict(showgrid=False,range=[0, None]),
+            yaxis=dict(showgrid=False),
             plot_bgcolor="white",
             hovermode='x unified',
             legend_title="Tipo" if selected_bairro else None,
-            height=416,
-            margin=dict(l=10,r=10,t=10,b=10),
+            margin=dict(l=50, r=30, t=80, b=30),
         )
 
     # Caso `selected_bairro` seja `None`, defina a cor manualmente para cinza
@@ -548,117 +549,112 @@ fig_tipo = px.bar()
 fig_local = px.bar()
 
 texto_bairro = ""
-
+style_graph = {
+    "padding": "10px",
+    "backgroundColor": "#CDE2CC",
+    "height": "45vh",  # Altura
+    "marginBottom": "5px",
+    "overflow": "visible",  # Certifica-se de que o conteúdo não é cortado
+}
 # Layout do Dash
-app.layout = dbc.Container([
-    # Cabeçalho ou título do dashboard
-    
-                dbc.Row(html.H1("Mapa da criminalidade em Porto Alegre", style={"color": "firebrick", "textAlign": "center"})),
-                dbc.Row(html.P("Dados abertos da Secretaria de Segurança Pública do estado do Rio Grande do Sul (SSP-RS)", style={"color": "#666", "textAlign": "center"})),
-                dbc.Row(html.B("Veja a distribuição espacial e temporal dos crimes cometidos nos últimos anos na capital gaúcha...", style={"color": "#666", "textAlign": "center"})),
-                dbc.Row(html.P("Este relatório interativo inclui dados dos principais tipos de crimes...", style={"color": "#666", "gap": "10px", "textAlign": "center"})),
-
-    
-    # Mapa na parte superior (única coluna)
-    dbc.Row(
-        dbc.Col(
-            dcc.Graph(
-                figure=fig_mapa,
-                id="mapa-crimes",
-                config={"displayModeBar": False},  # Remove barra de ferramentas do gráfico
-            ),
-            sm=10,md=6,lg=6  # Mapa ocupa toda a largura
+app.layout = dbc.Container(
+    [
+        # Cabeçalho ou título do dashboard
+        dbc.Row(
+            [
+                dbc.Col(html.H1("Mapa da criminalidade em Porto Alegre", style={"color": "firebrick"}), width=9),
+                dbc.Col(html.P("Dados abertos da Secretaria de Segurança Pública do estado do Rio Grande do Sul (SSP-RS)", style={"color": "#666"}), width=9),
+                dbc.Col(html.B("Veja a distribuição espacial e temporal dos crimes cometidos nos últimos anos na capital gaúcha, e compare o perfil de crimes dos bairros.", style={"color": "#666"}), width=9),
+                dbc.Col(html.P("Este relatório interativo inclui dados dos principais tipos de crimes responsáveis pelo sentimento de insegurança e medo no cidadão, como furto, roubo e outro tipos de delitos que atentam contra a vida. Os dados compreendem ocorrências criminais individuais registradas pelas Polícias de Porto Alegre, e repassadas à SSP-RS, no período de outubro de 2021 até agosto de 2024. Foram considerados apenas dados com informações sobre o bairro das ocorrências, totalizando 293.311 registros. Os incidentes podem envolver mais do que um tipo de crime (como roubo seguido de morte), de modo que a soma do número de incidentes dos tipos de crime não corresponde ao número total de incidentes. Os números podem sofrer alterações devido a demora no repasse de informações à SSP, e aos desdobramentos dos processos.", style={"color": "#666", "gap": "10px"}), width=9),
+            ],
+            style={"textAlign": "center", "marginBottom": "20px","justifyContent": "center", "padding": "20px"},
         ),
-        style={"marginBottom": "20px", "justifyContent": "center", "gap": "10px"}
-    ),
 
-    # Filtros (dropdowns) em duas colunas
-    dbc.Row(
-        [
+        # Mapa na parte superior
+        dbc.Row(
             dbc.Col(
-                dcc.Dropdown(
-                    id="dp_1",
-                    options=[{"label": bairro, "value": bairro} for bairro in sorted(df_crimes["CBairro"].unique())],
-                    placeholder="Selecione um bairro",
+                dcc.Graph(
+                    figure=fig_mapa,
+                    id="mapa-crimes",
+                    config={"displayModeBar": False},
+                    style={"height": "50vh"}  # Altura ajustável
                 ),
-                sm=5,md=2,lg=2,  # Ocupa metade da largura
-                style={"backgroundColor": "#d3d3d3", "padding": "10px", "borderRadius": "5px"}
+                width=9,
             ),
-            dbc.Col(
-                dcc.Dropdown(
-                    id="dp_2",
-                    options=[{"label": crime, "value": crime} for crime in df_crimes["Crime"].unique()],
-                    placeholder="Selecione um tipo de crime",
-                ),
-                sm=5,md=2,lg=2,  # Ocupa metade da largura
-                style={"backgroundColor": "#d3d3d3", "padding": "10px", "borderRadius": "5px"}
-            ),
-        ],
-        
-    style={"textAlign": "center", "marginBottom": "20px","justifyContent": "center"}),
-
-    # Texto explicativo em markdown
-    dbc.Row(
-        dbc.Col(
-            html.Div(
-                style={"textAlign": "center", "marginBottom": "20px","justifyContent": "center"},
-                children=[
-                    dcc.Markdown(f"{texto_bairro}", id="texto_bairro"),
-                    html.P(style={"textAlign": "center", "marginBottom": "20px"}, id="markdown_explanation")
-                ]
-            ),
-            sm=10,md=8,lg=8
+            style={"marginBottom": "20px","justifyContent": "center", "padding": "20px"},
         ),
-    style={"textAlign": "center", "marginBottom": "20px","justifyContent": "center"}),
 
-    
-
-    # Gráficos em duas linhas com duas colunas
-    dbc.Row(
-        [
-            dbc.Col(
-                dcc.Graph(figure=fig_bairro, id="graph"),
-                sm=6,md=6,lg=6,  # Ocupa metade da largura
-                style={"backgroundColor": "#CDE2CC", "padding": "20px"}
-            ),
-            dbc.Col([
-                dcc.Graph(figure=fig_tempo, id="graph_tempo"),
-                html.Div(
-                    id="button-group",
-                    style={"display": "flex", "justifyContent": "center", "gap": "10px", "backgroundColor": "white"},
-                    children=[
-                        html.Button("Anual", id="btn-ano", n_clicks=0),
-                        html.Button("Mensal", id="btn-mes-ano", n_clicks=0),
-                        html.Button("Mês(Ano)", id="btn-mes", n_clicks=0),
-                        html.Button("Dia da Semana", id="btn-dia-semana", n_clicks=0),
-                        html.Button("Hora do Dia", id="btn-hora-dia", n_clicks=0),
-                        ],
+        # Filtros (dropdowns)
+        dbc.Row(
+            [
+                dbc.Col(
+                    dcc.Dropdown(
+                        id="dp_1",
+                        options=[{"label": bairro, "value": bairro} for bairro in sorted(df_crimes_base["CBairro"].unique())],
+                        placeholder="Selecione um bairro",
                     ),
-                ],
-                sm=6,md=6,lg=6,  # Ocupa metade da largura
-                style={"backgroundColor": "#CDE2CC", "padding": "20px"}
-            ),
-        ],
-        style={"backgroundColor": "#CDE2CC", "padding": "20px","justifyContent": "center", "marginBottom": "20px"}
-    ),
+                    sm=4, md=3, lg=3,
+                    style={"backgroundColor": "#d3d3d3", "padding": "10px", "borderRadius": "5px"},
+                ),
+                dbc.Col(
+                    dcc.Dropdown(
+                        id="dp_2",
+                        options=[{"label": crime, "value": crime} for crime in df_crimes_base["Crime"].unique()],
+                        placeholder="Selecione um tipo de crime",
+                    ),
+                    sm=4, md=3, lg=3,
+                    style={"backgroundColor": "#d3d3d3", "padding": "10px", "borderRadius": "5px"},
+                ),
+            ],
+            style={"marginBottom": "20px", "justifyContent": "center", "padding": "10px"},
+        ),
 
-    # Gráficos de tipo e local
-    dbc.Row(
-        [
+        # Texto explicativo
+        dbc.Row(
             dbc.Col(
-                dcc.Graph(figure=fig_tipo, id="graph_tipo"),
-                sm=6,md=6,lg=6,  # Ocupa metade da largura
-                style={"backgroundColor": "#CDE2CC", "padding": "20px"}
-            ),
-            dbc.Col(
-                dcc.Graph(figure=fig_local, id="graph_local"),
-                sm=6,md=6,lg=6,  # Ocupa metade da largura
-                style={"backgroundColor": "#CDE2CC", "padding": "20px"}
-            ),
-        ],
-        style={"backgroundColor": "#CDE2CC", "padding": "20px", "marginBottom": "20px","justifyContent": "center"}
-    ),
-],fluid=True, style={"backgroundColor": "#CDE2CC", "padding": "20px", "marginBottom": "20px"})
+                [
+                    dcc.Markdown(f"{texto_bairro}", id="texto_bairro"),
+                    html.P(id="markdown_explanation"),
+                ],
+                style={"textAlign": "center"},
+                width=10,
+            ),style={"justifyContent": "center", "marginBottom": "10px"}
+        ),
+
+        # Gráficos
+        dbc.Row(
+            [
+                dbc.Col(dcc.Graph(figure=fig_bairro, id="graph", responsive=True, style=style_graph), sm=11,md=5),
+                dbc.Col([
+                        dbc.Row(dcc.Graph(figure=fig_tempo, id="graph_tempo", responsive=True, style=style_graph),),
+                        dbc.Row(html.Div(
+                            id="button-group",
+                            style={"display": "flex", "justifyContent": "center", "gap": "10px", "backgroundColor": "#CDE2CC"},
+                            children=[
+                                html.Button("Anual", id="btn-ano", n_clicks=1),
+                                html.Button("Mensal", id="btn-mes-ano", n_clicks=0),
+                                html.Button("Mês(Ano)", id="btn-mes", n_clicks=0),
+                                html.Button("Dia da Semana", id="btn-dia-semana", n_clicks=0),
+                                html.Button("Hora do Dia", id="btn-hora-dia", n_clicks=0),
+                            ],)
+                        
+                        )],
+                         sm=11,md=5),
+            ],
+            style={"marginBottom": "20px", "justifyContent": "center"},
+        ),
+        dbc.Row(
+            [
+                dbc.Col(dcc.Graph(figure=fig_tipo, id="graph_tipo", responsive=True, style=style_graph), sm=11,md=5),
+                dbc.Col(dcc.Graph(figure=fig_local, id="graph_local", responsive=True, style=style_graph), sm=11,md=5),
+            ],
+            style={"marginBottom": "15px", "justifyContent": "center"},
+        ),
+    ],
+    fluid=True,
+    style={"backgroundColor": "#CDE2CC", "padding": "10px"},
+)
+
 
 @app.callback(
     [
@@ -684,20 +680,19 @@ app.layout = dbc.Container([
 def update_graphs(selected_bairro, selected_crime, btn_ano, btn_mes_ano, btn_mes, btn_dia_semana, btn_hora_dia):
     selected_tempo = 'Ano'  # Valor padrão, caso nenhum botão tenha sido clicado
     ctx = dash.callback_context
-    if not ctx.triggered:
-        selected_tempo = 'Ano'  # Padrão caso nenhum botão tenha sido clicado
-    else:
+# Verifica qual botão foi clicado
+    if ctx.triggered:
         triggered_id = ctx.triggered[0]['prop_id'].split('.')[0]
-        if triggered_id == 'btn-ano':
-            selected_tempo = 'Ano'
-        elif triggered_id == 'btn-mes-ano':
-            selected_tempo = 'Mensal'
-        elif triggered_id == 'btn-mes':
-            selected_tempo = 'Mes-Ano'
-        elif triggered_id == 'btn-dia-semana':
-            selected_tempo = 'Dia da Semana'
-        elif triggered_id == 'btn-hora-dia':
-            selected_tempo = 'Hora do Dia'
+        if triggered_id == "btn-ano":
+            selected_tempo = "Ano"
+        elif triggered_id == "btn-mes-ano":
+            selected_tempo = "Mensal"
+        elif triggered_id == "btn-mes":
+            selected_tempo = "Mes-Ano"
+        elif triggered_id == "btn-dia-semana":
+            selected_tempo = "Dia da Semana"
+        elif triggered_id == "btn-hora-dia":
+            selected_tempo = "Hora do Dia"
 
     # Filtrar os dados pelo crime selecionado
     if selected_crime is None:
