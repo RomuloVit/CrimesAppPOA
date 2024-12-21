@@ -14,6 +14,7 @@ df_crimes = df_crimes_base.copy()
 
 # Carregar os dados
 data_geo_base = gpd.read_file("data_geo.shp")
+data_geo_base["geometry"] = data_geo_base.simplify(300)
 
 def format_name(name):
     exceptions = {"de", "do", "da", "dos", "das"}
@@ -27,7 +28,7 @@ def format_name(name):
 # Aplicar a formatação à coluna "CBairro"
 data_geo_base["Bairro"] = data_geo_base["Bairro"].apply(format_name)
 
-df_crimes = df_crimes_base.copy()
+
 # Garantir que "Data Fato" seja tratada como datetime
 df_crimes['Data Fato'] = pd.to_datetime(df_crimes['Data Fato'], format='%d/%m/%Y')
 
@@ -663,7 +664,6 @@ app.layout = dbc.Container([
 
 @app.callback(
     [
-        Output('mapa-crimes', 'figure'),
         Output('texto_bairro','children'),
         Output("markdown_explanation", "children"),
         Output("graph", "figure"),  
@@ -728,6 +728,22 @@ def update_graphs(selected_bairro, selected_crime, btn_ano, btn_mes_ano, btn_mes
     fig_local = grapher_local(df_filtrado,selected_bairro,selected_crime)
     fig_bairro = grapher_bairro(filtered_df,selected_bairro,selected_crime)
         
+    return texto_bairro, render_explanation(selected_crime), fig_bairro, fig_tempo, fig_tipo, fig_local
+
+@app.callback(
+    
+        Output('mapa-crimes', 'figure'),
+        
+       
+        Input("dp_2", "value"),  # Crime selecionado
+        
+    
+)
+def update_map(selected_crime):
+    if selected_crime:
+        filtered_df = df_crimes[df_crimes["Crime"] == selected_crime]
+    else:
+        filtered_df = df_crimes
     # Atualizar dados geográficos com a contagem de Incidente_ID únicos por bairro
     incident_counts = (
     filtered_df.groupby('CBairro')['Incidente_ID']
@@ -768,13 +784,13 @@ def update_graphs(selected_bairro, selected_crime, btn_ano, btn_mes_ano, btn_mes
     fig_mapa.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0},
     coloraxis_colorbar=dict(
         title="Incidentes",
-        tickformat=".",  # Usar separador de milhares
+        tickformat=",",  # Usar separador de milhares
         ticks="outside",  # Opcional, para manter os ticks externos
     ))
     fig_mapa.update_traces(hovertemplate="<b>%{hovertext}</b><br>Incidentes: %{customdata[0]}")
 
     
-    return fig_mapa,texto_bairro, render_explanation(selected_crime), fig_bairro, fig_tempo, fig_tipo, fig_local
+    return fig_mapa
 
 server = app.server  # Esta linha é importante para o Gunicorn
 
