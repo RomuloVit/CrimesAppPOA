@@ -214,7 +214,7 @@ def grapher_bairro(df,selected_bairro,selected_crime):
             hover_name="CBairro",
             hover_data=["Incidentes", "Ranking"],
             labels={'Incidentes': 'Número de incidentes', 'CBairro': 'Bairro', 'Métrica': 'Legenda'},
-            text="Incidentes"  # Incluir os valores no gráfico
+            text="Incidentes",  # Incluir os valores no gráfico
         )
         fig_bairro.update_traces(marker_color="gray")
         fig_bairro.update_layout(
@@ -298,7 +298,7 @@ def grapher_local(df,selected_bairro,selected_crime):
                 labels={'Valor': 'Participação (%)', 'Crime': 'Tipo de Crime', 'Métrica': 'Legenda'}
                 )
         fig_local = fig_local.update_layout(
-            height=600,  # Ajuste a altura do gráfico
+            height=700,  # Ajuste a altura do gráfico
             margin=dict(l=50, r=30, t=80, b=30),  # Ajuste as margens para melhor visualização
             title=dict(
                 text=f"<span style='font-size: 14px; color:dimgray;'><b>Perfil dos locais de crimes de Porto Alegre</b></span><br>"
@@ -344,7 +344,7 @@ def grapher_local(df,selected_bairro,selected_crime):
                 text=f"<span style='font-size: 14px; color:dimgray;'><b>Perfil de locais de crime de {selected_bairro} comparado com todos os bairros</b></span><br>"
                 + f"<span style='font-size: 13px; color: gray;'>Participação por local no número total de incidentes de {selected_crime or 'todos os tipos'}"
             ),
-            height=600,  # Ajuste a altura do gráfico
+            height=700,  # Ajuste a altura do gráfico
             margin=dict(l=50, r=30, t=80, b=30),  # Ajuste as margens para melhor visualização
             xaxis=dict(showticklabels=False)
             )
@@ -383,7 +383,7 @@ def grapher_tipo(df,selected_bairro):
             title=dict(
                 text="<span style='font-size: 14px; color:dimgray;'><b>Número total de incidentes por tipo de crime em todos os bairros</b></span>",
             ),
-            height=600,  # Ajuste a altura do gráfico
+            height=700,  # Ajuste a altura do gráfico
             margin=dict(l=50, r=30, t=80, b=30),  # Ajuste as margens para melhor visualização
             xaxis=dict(showticklabels=False)
         )
@@ -427,7 +427,7 @@ def grapher_tipo(df,selected_bairro):
                 text=f"<span style='font-size: 14px; color:dimgray;'><b>Perfil de tipos de crime de {selected_bairro} comparado com todos os bairros</b></span><br><span style='font-size: 13px; color: gray;'>Participação por tipo de crime no total de crimes do bairro</span>",
                 ),
             yaxis={"dtick":1},
-            height=600,  # Ajuste a altura do gráfico
+            height=700,  # Ajuste a altura do gráfico
             margin=dict(l=50, r=30, t=80, b=30),  # Ajuste as margens para melhor visualização
             xaxis=dict(showticklabels=False)
             #bargap = 0.02
@@ -552,7 +552,7 @@ texto_bairro = ""
 style_graph = {
     "padding": "10px",
     "backgroundColor": "#CDE2CC",
-    "height": "45vh",  # Altura
+    "height": "55vh",  # Altura
     "marginBottom": "5px",
     "overflow": "visible",  # Certifica-se de que o conteúdo não é cortado
 }
@@ -777,7 +777,7 @@ def update_map(selected_crime):
     fig_mapa.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0},
     coloraxis_colorbar=dict(
         title="Incidentes",
-        tickformat=",",  # Usar separador de milhares
+        tickformat=".",  # Usar separador de milhares
         ticks="outside",  # Opcional, para manter os ticks externos
     ))
     fig_mapa.update_traces(hovertemplate="<b>%{hovertext}</b><br>Incidentes: %{customdata[0]}")
