@@ -629,7 +629,7 @@ app.layout = dbc.Container(
                         dbc.Row(dcc.Graph(figure=fig_tempo, id="graph_tempo", responsive=True, style=style_graph),sm=11,md=5),
                         dbc.Row(html.Div(
                             id="button-group",
-                            style={"display": "flex", "justifyContent": "center", "gap": "1px", "backgroundColor": "darkgray","width":"10vh"},
+                            style={"display": "flex", "justifyContent": "center", "gap": "1px", "backgroundColor": "darkgray","width":"30vh"},
                             children=[
                                 html.Button("Anual", id="btn-ano", n_clicks=1),
                                 html.Button("Mensal", id="btn-mes-ano", n_clicks=0),
