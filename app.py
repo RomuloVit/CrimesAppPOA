@@ -592,8 +592,8 @@ app.layout = dbc.Container(
                         id="dp_1",
                         options=[{"label": bairro, "value": bairro} for bairro in sorted(df_crimes_base["CBairro"].unique())],
                         placeholder="Selecione um bairro",
+                        style={"width":"10vh"}
                     ),
-                    sm=2, md=2, lg=2,
                     style={"backgroundColor": "#d3d3d3", "padding": "10px", "borderRadius": "5px"},
                 ),
                 dbc.Col(
@@ -601,12 +601,12 @@ app.layout = dbc.Container(
                         id="dp_2",
                         options=[{"label": crime, "value": crime} for crime in df_crimes_base["Crime"].unique()],
                         placeholder="Selecione um tipo de crime",
+                        style={"width":"10vh"}
                     ),
-                    sm=2, md=2, lg=2,
                     style={"backgroundColor": "#d3d3d3", "padding": "10px", "borderRadius": "5px"},
                 ),
             ],
-            style={"marginBottom": "20px", "justifyContent": "center", "padding": "10px"},
+            style={"marginBottom": "20px", "justifyContent": "center"},
         ),
 
         # Texto explicativo
@@ -629,26 +629,26 @@ app.layout = dbc.Container(
                         dbc.Row(dcc.Graph(figure=fig_tempo, id="graph_tempo", responsive=True, style=style_graph),sm=11,md=5),
                         dbc.Row(html.Div(
                             id="button-group",
-                            style={"display": "flex", "justifyContent": "center", "gap": "5px", "backgroundColor": "darkgray","width":"10vh"},
+                            style={"display": "flex", "justifyContent": "center", "gap": "1px", "backgroundColor": "darkgray","width":"10vh"},
                             children=[
                                 html.Button("Anual", id="btn-ano", n_clicks=1),
                                 html.Button("Mensal", id="btn-mes-ano", n_clicks=0),
                                 html.Button("Mês(Ano)", id="btn-mes", n_clicks=0),
                                 html.Button("Dia da Semana", id="btn-dia-semana", n_clicks=0),
                                 html.Button("Hora do Dia", id="btn-hora-dia", n_clicks=0),
-                            ],sm=4,md=5)
+                            ])
                         
                         )],
-                         sm=11,md=5),
+                         ),
             ],
-            style={"marginBottom": "20px", "justifyContent": "center","padding": "10px"},
+            style={"marginBottom": "20px", "justifyContent": "center"},
         ),
         dbc.Row(
             [
                 dbc.Col(dcc.Graph(figure=fig_tipo, id="graph_tipo", responsive=True, style=style_graph), sm=11,md=5),
                 dbc.Col(dcc.Graph(figure=fig_local, id="graph_local", responsive=True, style=style_graph), sm=11,md=5),
             ],
-            style={"marginBottom": "20px", "justifyContent": "center","padding": "10px"},
+            style={"marginBottom": "20px", "justifyContent": "center"},
         ),
     ],
     fluid=True,
