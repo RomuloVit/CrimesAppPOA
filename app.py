@@ -535,6 +535,13 @@ def render_explanation(selected_crime):
         # Mensagem padrão caso nenhum crime seja selecionado
         return dcc.Markdown("**Selecione um tipo de crime para mais informações.**")
 
+style_graph = {
+    "padding": "10px",
+    "backgroundColor": "darkgray",
+    "height": "55vh",  # Altura
+    "marginBottom": "5px",
+    "overflow": "visible",  # Certifica-se de que o conteúdo não é cortado
+}
 # Configurar a aplicação Dash
 external_stylesheets = [dbc.themes.BOOTSTRAP]
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
@@ -549,13 +556,7 @@ fig_tipo = px.bar()
 fig_local = px.bar()
 
 texto_bairro = ""
-style_graph = {
-    "padding": "10px",
-    "backgroundColor": "darkgray",
-    "height": "55vh",  # Altura
-    "marginBottom": "5px",
-    "overflow": "visible",  # Certifica-se de que o conteúdo não é cortado
-}
+
 # Layout do Dash
 app.layout = dbc.Container(
     [
@@ -622,27 +623,39 @@ app.layout = dbc.Container(
         ),
 
         # Gráficos
-        dbc.Row(
+        dbc.Col(
+            dbc.Card(
             [
-                dbc.Col(dcc.Graph(figure=fig_bairro, id="graph", responsive=True, style=style_graph), sm=11,md=5),
-                dbc.Col([
-                        dbc.Row(dcc.Graph(figure=fig_tempo, id="graph_tempo", responsive=True, style=style_graph),sm=11,md=5),
-                        dbc.Row(html.Div(
-                            id="button-group",
-                            style={"display": "flex", "justifyContent": "center", "gap": "1px", "backgroundColor": "darkgray","width":"30vh"},
-                            children=[
-                                html.Button("Anual", id="btn-ano", n_clicks=1),
-                                html.Button("Mensal", id="btn-mes-ano", n_clicks=0),
-                                html.Button("Mês(Ano)", id="btn-mes", n_clicks=0),
-                                html.Button("Dia da Semana", id="btn-dia-semana", n_clicks=0),
-                                html.Button("Hora do Dia", id="btn-hora-dia", n_clicks=0),
-                            ])
-                        
-                        )],
-                         ),
+                dcc.Graph(
+                    figure=fig_tempo,
+                    id="graph_tempo",
+                    responsive=True,
+                    style={"height": "45vh", "marginBottom": "5px"},
+                ),
+                html.Div(
+                    id="button-group",
+                    style={
+                        "display": "flex",
+                        "justifyContent": "center",
+                        "gap": "5px",
+                        "backgroundColor": "darkgray",
+                        "padding": "5px",
+                        "marginTop": "5px",
+                    },
+                    children=[
+                        html.Button("Anual", id="btn-ano", n_clicks=1, style={"fontSize": "12px", "height": "30px"}),
+                        html.Button("Mensal", id="btn-mes-ano", n_clicks=0, style={"fontSize": "12px", "height": "30px"}),
+                        html.Button("Mês(Ano)", id="btn-mes", n_clicks=0, style={"fontSize": "12px", "height": "30px"}),
+                        html.Button("Dia da Semana", id="btn-dia-semana", n_clicks=0, style={"fontSize": "12px", "height": "30px"}),
+                        html.Button("Hora do Dia", id="btn-hora-dia", n_clicks=0, style={"fontSize": "12px", "height": "30px"}),
+                    ],
+                ),
             ],
-            style={"marginBottom": "20px", "justifyContent": "center"},
-        ),
+            style={"backgroundColor": "darkgray", "padding": "10px", "borderRadius": "5px"},
+                ),
+                sm=12,
+                md=5,
+            ),
         dbc.Row(
             [
                 dbc.Col(dcc.Graph(figure=fig_tipo, id="graph_tipo", responsive=True, style=style_graph), sm=11,md=5),
