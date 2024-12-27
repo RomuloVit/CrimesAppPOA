@@ -579,7 +579,7 @@ app.layout = dbc.Container(
                     config={"displayModeBar": False},
                     style={"height": "50vh"}  # Altura ajustável
                 ),
-                width=10,
+                width=11,
             ),
             style={"marginBottom": "20px","justifyContent": "center", "padding": "10px"},
         ),
@@ -593,7 +593,7 @@ app.layout = dbc.Container(
                         options=[{"label": bairro, "value": bairro} for bairro in sorted(df_crimes_base["CBairro"].unique())],
                         placeholder="Selecione um bairro",
                     ),
-                    sm=3, md=3, lg=3,
+                    sm=2, md=2, lg=2,
                     style={"backgroundColor": "#d3d3d3", "padding": "10px", "borderRadius": "5px"},
                 ),
                 dbc.Col(
@@ -602,7 +602,7 @@ app.layout = dbc.Container(
                         options=[{"label": crime, "value": crime} for crime in df_crimes_base["Crime"].unique()],
                         placeholder="Selecione um tipo de crime",
                     ),
-                    sm=3, md=3, lg=3,
+                    sm=2, md=2, lg=2,
                     style={"backgroundColor": "#d3d3d3", "padding": "10px", "borderRadius": "5px"},
                 ),
             ],
@@ -617,7 +617,7 @@ app.layout = dbc.Container(
                     html.P(id="markdown_explanation"),
                 ],
                 style={"textAlign": "center"},
-                width=10,
+                width=11,
             ),style={"justifyContent": "center", "marginBottom": "10px"}
         ),
 
@@ -629,7 +629,7 @@ app.layout = dbc.Container(
                         dbc.Row(dcc.Graph(figure=fig_tempo, id="graph_tempo", responsive=True, style=style_graph),),
                         dbc.Row(html.Div(
                             id="button-group",
-                            style={"display": "flex", "justifyContent": "center", "gap": "5px", "backgroundColor": "darkgray","padding": "10px","width":"30vh"},
+                            style={"display": "flex", "justifyContent": "center", "gap": "5px", "backgroundColor": "darkgray","padding": "10px","width":"10vh"},
                             children=[
                                 html.Button("Anual", id="btn-ano", n_clicks=1),
                                 html.Button("Mensal", id="btn-mes-ano", n_clicks=0),
