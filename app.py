@@ -627,7 +627,7 @@ app.layout = dbc.Container(
             [
                 dbc.Col(
                     dbc.Card(
-                        dcc.Graph(figure=fig_bairro, id="graph", responsive=True, style={"height": "45vh", "marginBottom": "5px"}),
+                        dcc.Graph(figure=fig_bairro, id="graph", responsive=True, style={"height": "50vh", "marginBottom": "5px"}),
                         style={"backgroundColor": "white", "padding": "10px", "borderRadius": "5px"}
                     )
                 , sm=11,md=5),
