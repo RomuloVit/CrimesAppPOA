@@ -623,39 +623,46 @@ app.layout = dbc.Container(
         ),
 
         # Gráficos
-        dbc.Col(
-            dbc.Card(
+        dbc.Row(
             [
-                dcc.Graph(
-                    figure=fig_tempo,
-                    id="graph_tempo",
-                    responsive=True,
-                    style={"height": "45vh", "marginBottom": "5px"},
-                ),
-                html.Div(
-                    id="button-group",
-                    style={
-                        "display": "flex",
-                        "justifyContent": "center",
-                        "gap": "5px",
-                        "backgroundColor": "darkgray",
-                        "padding": "5px",
-                        "marginTop": "5px",
-                    },
-                    children=[
-                        html.Button("Anual", id="btn-ano", n_clicks=1, style={"fontSize": "12px", "height": "30px"}),
-                        html.Button("Mensal", id="btn-mes-ano", n_clicks=0, style={"fontSize": "12px", "height": "30px"}),
-                        html.Button("Mês(Ano)", id="btn-mes", n_clicks=0, style={"fontSize": "12px", "height": "30px"}),
-                        html.Button("Dia da Semana", id="btn-dia-semana", n_clicks=0, style={"fontSize": "12px", "height": "30px"}),
-                        html.Button("Hora do Dia", id="btn-hora-dia", n_clicks=0, style={"fontSize": "12px", "height": "30px"}),
+                dbc.Col(dcc.Graph(figure=fig_bairro, id="graph", responsive=True, style=style_graph), sm=11,md=5),
+                dbc.Col(
+                    dbc.Card(
+                    [
+                        dcc.Graph(
+                            figure=fig_tempo,
+                            id="graph_tempo",
+                            responsive=True,
+                            style={"height": "45vh", "marginBottom": "5px"},
+                        ),
+                        html.Div(
+                            id="button-group",
+                            style={
+                                "display": "flex",
+                                "justifyContent": "center",
+                                "gap": "5px",
+                                "backgroundColor": "darkgray",
+                                "padding": "5px",
+                                "marginTop": "5px",
+                            },
+                            children=[
+                                html.Button("Anual", id="btn-ano", n_clicks=1, style={"fontSize": "10px", "height": "30px"}),
+                                html.Button("Mensal", id="btn-mes-ano", n_clicks=0, style={"fontSize": "10px", "height": "30px"}),
+                                html.Button("Mês(Ano)", id="btn-mes", n_clicks=0, style={"fontSize": "10px", "height": "30px"}),
+                                html.Button("Dia da Semana", id="btn-dia-semana", n_clicks=0, style={"fontSize": "10px", "height": "30px"}),
+                                html.Button("Hora do Dia", id="btn-hora-dia", n_clicks=0, style={"fontSize": "10px", "height": "30px"}),
+                            ],
+                        ),
                     ],
-                ),
-            ],
             style={"backgroundColor": "darkgray", "padding": "10px", "borderRadius": "5px"},
                 ),
-                sm=12,
+                sm=11,
                 md=5,
             ),
+                         
+            ],
+            style={"marginBottom": "20px", "justifyContent": "center"},
+        ),
         dbc.Row(
             [
                 dbc.Col(dcc.Graph(figure=fig_tipo, id="graph_tipo", responsive=True, style=style_graph), sm=11,md=5),
