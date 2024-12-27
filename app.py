@@ -184,11 +184,13 @@ def agreg_tempo(df, selected_tempo, selected_bairro):
 def fig_update(fig): # Personalizações adicionais
         fig = fig.update_layout(
         plot_bgcolor='white',  # Fundo branco
-        xaxis=dict(showgrid=False,font=dict(size=10)),  # Remove linhas internas do eixo X
+        xaxis=dict(showgrid=False),  # Remove linhas internas do eixo X
         yaxis=dict(
-            showgrid=False,font=dict(size=10)), # Remove linhas internas do eixo Y
-        title=dict(x=0.05, y= 0.95, font=dict(size=12), automargin=True, yref='container',xanchor='left',yanchor='top'),  # Centraliza o título
-        config={"displayModeBar": False})
+            showgrid=False),
+             # Remove linhas internas do eixo Y
+            #showticklabels=False),  # Remove linhas internas do eixo Y
+        title=dict(x=0.05, y= 0.95, font=dict(size=12), automargin=True, yref='container',xanchor='left',yanchor='top')  # Centraliza o título
+        )
         return(fig)
 
 def grapher_bairro(df,selected_bairro,selected_crime):
