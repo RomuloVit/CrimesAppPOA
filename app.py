@@ -188,7 +188,7 @@ def fig_update(fig): # Personalizações adicionais
         yaxis=dict(
             showgrid=False),  # Remove linhas internas do eixo Y
             #showticklabels=False),  # Remove linhas internas do eixo Y
-        title=dict(x=0.05, y= 0.95, font=dict(size=12), automargin=True, yref='container',xanchor='left',yanchor='top')  # Centraliza o título
+        title=dict(x=0.05, y= 0.95, font=dict(size=10), automargin=True, yref='container',xanchor='left',yanchor='top')  # Centraliza o título
         )
         return(fig)
 
@@ -588,7 +588,8 @@ app.layout = dbc.Container(
                         options=[{"label": bairro, "value": bairro} for bairro in sorted(df_crimes_base["CBairro"].unique())],
                         placeholder="Selecione um bairro",
                     ),
-                    style={"backgroundColor": "#d3d3d3", "padding": "10px", "borderRadius": "5px","width":"25vh"},
+                    style={"backgroundColor": "#d3d3d3","fontSize": "9px", "padding": "10px", "borderRadius": "5px"},
+                    sm=4,md=4
                 ),
                 dbc.Col(
                     dcc.Dropdown(
@@ -596,7 +597,8 @@ app.layout = dbc.Container(
                         options=[{"label": crime, "value": crime} for crime in df_crimes_base["Crime"].unique()],
                         placeholder="Selecione um tipo de crime",
                     ),
-                    style={"backgroundColor": "#d3d3d3", "padding": "10px", "borderRadius": "5px","width":"25vh"},
+                    style={"backgroundColor": "#d3d3d3","fontSize": "9px", "padding": "10px", "borderRadius": "5px"},
+                    sm=4,md=4
                 ),
             ],
             style={"marginBottom": "20px", "justifyContent": "center"},
@@ -620,7 +622,7 @@ app.layout = dbc.Container(
                 dbc.Col(
                     dbc.Card(
                         dcc.Graph(figure=fig_bairro, id="graph", responsive=True, style={"height": "50vh", "marginBottom": "5px"}),
-                        style={"backgroundColor": "white", "padding": "10px", "borderRadius": "5px"}
+                        style={"backgroundColor": "white","marginBottom": "20px", "padding": "10px", "borderRadius": "5px"}
                     ),
                 sm=11,md=5),
                 dbc.Col(
@@ -670,7 +672,7 @@ app.layout = dbc.Container(
                 dbc.Col(
                     dbc.Card(
                         dcc.Graph(figure=fig_local, id="graph_local", responsive=True, style={"height": "50vh", "marginBottom": "5px"}),
-                        style={"backgroundColor": "white","marginBottom": "20px", "padding": "10px", "borderRadius": "5px"}
+                        style={"backgroundColor": "white", "padding": "10px", "borderRadius": "5px"}
                         ),
                         sm=11,md=5),
             ],
