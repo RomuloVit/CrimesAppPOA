@@ -551,7 +551,7 @@ fig_local = px.bar()
 texto_bairro = ""
 style_graph = {
     "padding": "10px",
-    "backgroundColor": "#CDE2CC",
+    "backgroundColor": "darkgray",
     "height": "55vh",  # Altura
     "marginBottom": "5px",
     "overflow": "visible",  # Certifica-se de que o conteúdo não é cortado
@@ -579,9 +579,9 @@ app.layout = dbc.Container(
                     config={"displayModeBar": False},
                     style={"height": "50vh"}  # Altura ajustável
                 ),
-                width=9,
+                width=10,
             ),
-            style={"marginBottom": "20px","justifyContent": "center", "padding": "20px"},
+            style={"marginBottom": "20px","justifyContent": "center", "padding": "10px"},
         ),
 
         # Filtros (dropdowns)
@@ -593,7 +593,7 @@ app.layout = dbc.Container(
                         options=[{"label": bairro, "value": bairro} for bairro in sorted(df_crimes_base["CBairro"].unique())],
                         placeholder="Selecione um bairro",
                     ),
-                    sm=4, md=3, lg=3,
+                    sm=3, md=3, lg=3,
                     style={"backgroundColor": "#d3d3d3", "padding": "10px", "borderRadius": "5px"},
                 ),
                 dbc.Col(
@@ -602,7 +602,7 @@ app.layout = dbc.Container(
                         options=[{"label": crime, "value": crime} for crime in df_crimes_base["Crime"].unique()],
                         placeholder="Selecione um tipo de crime",
                     ),
-                    sm=4, md=3, lg=3,
+                    sm=3, md=3, lg=3,
                     style={"backgroundColor": "#d3d3d3", "padding": "10px", "borderRadius": "5px"},
                 ),
             ],
@@ -629,7 +629,7 @@ app.layout = dbc.Container(
                         dbc.Row(dcc.Graph(figure=fig_tempo, id="graph_tempo", responsive=True, style=style_graph),),
                         dbc.Row(html.Div(
                             id="button-group",
-                            style={"display": "flex", "justifyContent": "center", "gap": "10px", "backgroundColor": "#CDE2CC"},
+                            style={"display": "flex", "justifyContent": "center", "gap": "10px", "backgroundColor": "darkgray","padding": "10px"},
                             children=[
                                 html.Button("Anual", id="btn-ano", n_clicks=1),
                                 html.Button("Mensal", id="btn-mes-ano", n_clicks=0),
@@ -641,18 +641,18 @@ app.layout = dbc.Container(
                         )],
                          sm=11,md=5),
             ],
-            style={"marginBottom": "20px", "justifyContent": "center"},
+            style={"marginBottom": "20px", "justifyContent": "center","padding": "10px"},
         ),
         dbc.Row(
             [
                 dbc.Col(dcc.Graph(figure=fig_tipo, id="graph_tipo", responsive=True, style=style_graph), sm=11,md=5),
                 dbc.Col(dcc.Graph(figure=fig_local, id="graph_local", responsive=True, style=style_graph), sm=11,md=5),
             ],
-            style={"marginBottom": "15px", "justifyContent": "center"},
+            style={"marginBottom": "20px", "justifyContent": "center"},
         ),
     ],
     fluid=True,
-    style={"backgroundColor": "#CDE2CC", "padding": "10px"},
+    style={"backgroundColor": "darkgray", "padding": "10px"},
 )
 
 
