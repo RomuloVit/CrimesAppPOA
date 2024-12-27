@@ -625,7 +625,12 @@ app.layout = dbc.Container(
         # Gráficos
         dbc.Row(
             [
-                dbc.Col(dcc.Graph(figure=fig_bairro, id="graph", responsive=True, style=style_graph), sm=11,md=5),
+                dbc.Col(
+                    dbc.Card(
+                        dcc.Graph(figure=fig_bairro, id="graph", responsive=True, style=style_graph),
+                        style={"backgroundColor": "white", "padding": "10px", "borderRadius": "5px"}
+                    )
+                , sm=11,md=5),
                 dbc.Col(
                     dbc.Card(
                     [
@@ -654,7 +659,7 @@ app.layout = dbc.Container(
                             ],
                         ),
                     ],
-            style={"backgroundColor": "darkgray", "padding": "10px", "borderRadius": "5px"},
+            style={"backgroundColor": "white", "padding": "10px", "borderRadius": "5px"},
                 ),
                 sm=11,
                 md=5,
