@@ -188,7 +188,7 @@ def fig_update(fig): # Personalizações adicionais
         yaxis=dict(
             showgrid=False),  # Remove linhas internas do eixo Y
             #showticklabels=False),  # Remove linhas internas do eixo Y
-        title=dict(x=0.05, y= 0.95, font=dict(size=14), automargin=True, yref='container',xanchor='left',yanchor='top')  # Centraliza o título
+        title=dict(x=0.05, y= 0.95, font=dict(size=12), automargin=True, yref='container',xanchor='left',yanchor='top')  # Centraliza o título
         )
         return(fig)
 
@@ -535,13 +535,7 @@ def render_explanation(selected_crime):
         # Mensagem padrão caso nenhum crime seja selecionado
         return dcc.Markdown("**Selecione um tipo de crime para mais informações.**")
 
-style_graph = {
-    "padding": "10px",
-    "backgroundColor": "darkgray",
-    "height": "55vh",  # Altura
-    "marginBottom": "5px",
-    "overflow": "visible",  # Certifica-se de que o conteúdo não é cortado
-}
+
 # Configurar a aplicação Dash
 external_stylesheets = [dbc.themes.BOOTSTRAP]
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
@@ -670,13 +664,13 @@ app.layout = dbc.Container(
                 dbc.Col(
                     dbc.Card(
                         dcc.Graph(figure=fig_tipo, id="graph_tipo", responsive=True, style={"height": "50vh", "marginBottom": "5px"}),
-                        style={"backgroundColor": "white", "padding": "10px", "borderRadius": "5px"}
+                        style={"backgroundColor": "white","marginBottom": "20px", "padding": "10px", "borderRadius": "5px"}
                         ),
                         sm=11,md=5),
                 dbc.Col(
                     dbc.Card(
                         dcc.Graph(figure=fig_local, id="graph_local", responsive=True, style={"height": "50vh", "marginBottom": "5px"}),
-                        style={"backgroundColor": "white", "padding": "10px", "borderRadius": "5px"}
+                        style={"backgroundColor": "white","marginBottom": "20px", "padding": "10px", "borderRadius": "5px"}
                         ),
                         sm=11,md=5),
             ],
