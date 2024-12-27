@@ -562,10 +562,10 @@ app.layout = dbc.Container(
         # Cabeçalho ou título do dashboard
         dbc.Row(
             [
-                dbc.Col(html.H1("Mapa da criminalidade em Porto Alegre", style={"color": "firebrick"}), width=9),
-                dbc.Col(html.P("Dados abertos da Secretaria de Segurança Pública do estado do Rio Grande do Sul (SSP-RS)", style={"color": "#666"}), width=9),
-                dbc.Col(html.B("Veja a distribuição espacial e temporal dos crimes cometidos nos últimos anos na capital gaúcha, e compare o perfil de crimes dos bairros.", style={"color": "#666"}), width=9),
-                dbc.Col(html.P("Este relatório interativo inclui dados dos principais tipos de crimes responsáveis pelo sentimento de insegurança e medo no cidadão, como furto, roubo e outro tipos de delitos que atentam contra a vida. Os dados compreendem ocorrências criminais individuais registradas pelas Polícias de Porto Alegre, e repassadas à SSP-RS, no período de outubro de 2021 até agosto de 2024. Foram considerados apenas dados com informações sobre o bairro das ocorrências, totalizando 293.311 registros. Os incidentes podem envolver mais do que um tipo de crime (como roubo seguido de morte), de modo que a soma do número de incidentes dos tipos de crime não corresponde ao número total de incidentes. Os números podem sofrer alterações devido a demora no repasse de informações à SSP, e aos desdobramentos dos processos.", style={"color": "#666", "gap": "10px"}), width=9),
+                dbc.Col(html.H1("Mapa da criminalidade em Porto Alegre", style={"color": "firebrick"}), width=11),
+                dbc.Col(html.P("Dados abertos da Secretaria de Segurança Pública do estado do Rio Grande do Sul (SSP-RS)", style={"color": "#666"}), width=11),
+                dbc.Col(html.B("Veja a distribuição espacial e temporal dos crimes cometidos nos últimos anos na capital gaúcha, e compare o perfil de crimes dos bairros.", style={"color": "#666"}), width=11),
+                dbc.Col(html.P("Este relatório interativo inclui dados dos principais tipos de crimes responsáveis pelo sentimento de insegurança e medo no cidadão, como furto, roubo e outro tipos de delitos que atentam contra a vida. Os dados compreendem ocorrências criminais individuais registradas pelas Polícias de Porto Alegre, e repassadas à SSP-RS, no período de outubro de 2021 até agosto de 2024. Foram considerados apenas dados com informações sobre o bairro das ocorrências, totalizando 293.311 registros. Os incidentes podem envolver mais do que um tipo de crime (como roubo seguido de morte), de modo que a soma do número de incidentes dos tipos de crime não corresponde ao número total de incidentes. Os números podem sofrer alterações devido a demora no repasse de informações à SSP, e aos desdobramentos dos processos.", style={"color": "#666", "gap": "10px"}), width=11),
             ],
             style={"textAlign": "center", "marginBottom": "20px","justifyContent": "center", "padding": "20px"},
         ),
@@ -629,7 +629,7 @@ app.layout = dbc.Container(
                         dbc.Row(dcc.Graph(figure=fig_tempo, id="graph_tempo", responsive=True, style=style_graph),),
                         dbc.Row(html.Div(
                             id="button-group",
-                            style={"display": "flex", "justifyContent": "center", "gap": "10px", "backgroundColor": "darkgray","padding": "10px"},
+                            style={"display": "flex", "justifyContent": "center", "gap": "5px", "backgroundColor": "darkgray","padding": "10px","width":"30vh"},
                             children=[
                                 html.Button("Anual", id="btn-ano", n_clicks=1),
                                 html.Button("Mensal", id="btn-mes-ano", n_clicks=0),
@@ -648,7 +648,7 @@ app.layout = dbc.Container(
                 dbc.Col(dcc.Graph(figure=fig_tipo, id="graph_tipo", responsive=True, style=style_graph), sm=11,md=5),
                 dbc.Col(dcc.Graph(figure=fig_local, id="graph_local", responsive=True, style=style_graph), sm=11,md=5),
             ],
-            style={"marginBottom": "20px", "justifyContent": "center"},
+            style={"marginBottom": "20px", "justifyContent": "center","padding": "10px"},
         ),
     ],
     fluid=True,
