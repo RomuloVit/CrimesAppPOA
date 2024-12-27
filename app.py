@@ -593,18 +593,16 @@ app.layout = dbc.Container(
                         id="dp_1",
                         options=[{"label": bairro, "value": bairro} for bairro in sorted(df_crimes_base["CBairro"].unique())],
                         placeholder="Selecione um bairro",
-                        style={"width":"10vh"}
                     ),
-                    style={"backgroundColor": "#d3d3d3", "padding": "10px", "borderRadius": "5px"},
+                    style={"backgroundColor": "#d3d3d3", "padding": "10px", "borderRadius": "5px","width":"25vh"},
                 ),
                 dbc.Col(
                     dcc.Dropdown(
                         id="dp_2",
                         options=[{"label": crime, "value": crime} for crime in df_crimes_base["Crime"].unique()],
                         placeholder="Selecione um tipo de crime",
-                        style={"width":"10vh"}
                     ),
-                    style={"backgroundColor": "#d3d3d3", "padding": "10px", "borderRadius": "5px"},
+                    style={"backgroundColor": "#d3d3d3", "padding": "10px", "borderRadius": "5px","width":"25vh"},
                 ),
             ],
             style={"marginBottom": "20px", "justifyContent": "center"},
@@ -629,8 +627,8 @@ app.layout = dbc.Container(
                     dbc.Card(
                         dcc.Graph(figure=fig_bairro, id="graph", responsive=True, style={"height": "50vh", "marginBottom": "5px"}),
                         style={"backgroundColor": "white", "padding": "10px", "borderRadius": "5px"}
-                    )
-                , sm=11,md=5),
+                    ),
+                sm=11,md=5),
                 dbc.Col(
                     dbc.Card(
                     [
@@ -650,11 +648,11 @@ app.layout = dbc.Container(
                                 "marginTop": "5px",
                             },
                             children=[
-                                html.Button("Anual", id="btn-ano", n_clicks=1, style={"fontSize": "10px", "height": "30px"}),
-                                html.Button("Mensal", id="btn-mes-ano", n_clicks=0, style={"fontSize": "10px", "height": "30px"}),
-                                html.Button("Mês(Ano)", id="btn-mes", n_clicks=0, style={"fontSize": "10px", "height": "30px"}),
-                                html.Button("Dia da Semana", id="btn-dia-semana", n_clicks=0, style={"fontSize": "10px", "height": "30px"}),
-                                html.Button("Hora do Dia", id="btn-hora-dia", n_clicks=0, style={"fontSize": "10px", "height": "30px"}),
+                                html.Button("Anual", id="btn-ano", n_clicks=1, style={"fontSize": "9px", "height": "30px"}),
+                                html.Button("Mensal", id="btn-mes-ano", n_clicks=0, style={"fontSize": "9px", "height": "30px"}),
+                                html.Button("Mês(Ano)", id="btn-mes", n_clicks=0, style={"fontSize": "9px", "height": "30px"}),
+                                html.Button("Dia da Semana", id="btn-dia-semana", n_clicks=0, style={"fontSize": "9px", "height": "30px"}),
+                                html.Button("Hora do Dia", id="btn-hora-dia", n_clicks=0, style={"fontSize": "9px", "height": "30px"}),
                             ],
                         ),
                     ],
@@ -669,8 +667,18 @@ app.layout = dbc.Container(
         ),
         dbc.Row(
             [
-                dbc.Col(dcc.Graph(figure=fig_tipo, id="graph_tipo", responsive=True, style=style_graph), sm=11,md=5),
-                dbc.Col(dcc.Graph(figure=fig_local, id="graph_local", responsive=True, style=style_graph), sm=11,md=5),
+                dbc.Col(
+                    dbc.Card(
+                        dcc.Graph(figure=fig_tipo, id="graph_tipo", responsive=True, style={"height": "50vh", "marginBottom": "5px"}),
+                        style={"backgroundColor": "white", "padding": "10px", "borderRadius": "5px"}
+                        ),
+                        sm=11,md=5),
+                dbc.Col(
+                    dbc.Card(
+                        dcc.Graph(figure=fig_local, id="graph_local", responsive=True, style={"height": "50vh", "marginBottom": "5px"}),
+                        style={"backgroundColor": "white", "padding": "10px", "borderRadius": "5px"}
+                        ),
+                        sm=11,md=5),
             ],
             style={"marginBottom": "20px", "justifyContent": "center"},
         ),
