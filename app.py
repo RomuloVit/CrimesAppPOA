@@ -626,17 +626,17 @@ app.layout = dbc.Container(
             [
                 dbc.Col(dcc.Graph(figure=fig_bairro, id="graph", responsive=True, style=style_graph), sm=11,md=5),
                 dbc.Col([
-                        dbc.Row(dcc.Graph(figure=fig_tempo, id="graph_tempo", responsive=True, style=style_graph),),
+                        dbc.Row(dcc.Graph(figure=fig_tempo, id="graph_tempo", responsive=True, style=style_graph),sm=11,md=5),
                         dbc.Row(html.Div(
                             id="button-group",
-                            style={"display": "flex", "justifyContent": "center", "gap": "5px", "backgroundColor": "darkgray","padding": "10px","width":"10vh"},
+                            style={"display": "flex", "justifyContent": "center", "gap": "5px", "backgroundColor": "darkgray","width":"10vh"},
                             children=[
                                 html.Button("Anual", id="btn-ano", n_clicks=1),
                                 html.Button("Mensal", id="btn-mes-ano", n_clicks=0),
                                 html.Button("Mês(Ano)", id="btn-mes", n_clicks=0),
                                 html.Button("Dia da Semana", id="btn-dia-semana", n_clicks=0),
                                 html.Button("Hora do Dia", id="btn-hora-dia", n_clicks=0),
-                            ],)
+                            ],sm=4,md=5)
                         
                         )],
                          sm=11,md=5),
@@ -678,7 +678,7 @@ app.layout = dbc.Container(
     ]
 )
 def update_graphs(selected_bairro, selected_crime, btn_ano, btn_mes_ano, btn_mes, btn_dia_semana, btn_hora_dia):
-    selected_tempo = 'Ano'  # Valor padrão, caso nenhum botão tenha sido clicado
+    selected_tempo = 'Hora do Dia'  # Valor padrão, caso nenhum botão tenha sido clicado
     ctx = dash.callback_context
 # Verifica qual botão foi clicado
     if ctx.triggered:
