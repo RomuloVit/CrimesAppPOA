@@ -188,7 +188,7 @@ def fig_update(fig): # Personalizações adicionais
         yaxis=dict(
             showgrid=False,font=dict(size=10)), # Remove linhas internas do eixo Y
         title=dict(x=0.05, y= 0.95, font=dict(size=12), automargin=True, yref='container',xanchor='left',yanchor='top'),  # Centraliza o título
-        config={"displayModeBar": False})
+        )
         return(fig)
 
 def grapher_bairro(df,selected_bairro,selected_crime):
