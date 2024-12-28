@@ -189,7 +189,7 @@ def fig_update(fig): # Personalizações adicionais
         xaxis=dict(showgrid=False),  # Remove linhas internas do eixo X
         yaxis=dict(
             showgrid=False), # Remove linhas internas do eixo Y
-        title=dict(x=0.05, y= 1,  automargin=True, yref='container',xanchor='left',yanchor='auto'),  # Centraliza o título
+        title=dict(x=0.05, y= 0.95,  automargin=True, yref='container',xanchor='left',yanchor='bottom'),  # Centraliza o título
         )
         return(fig)
 
@@ -274,7 +274,7 @@ def grapher_bairro(df,selected_bairro,selected_crime):
 
 # Configuração do layout
     fig_bairro = fig_update(fig_bairro)
-    fig_bairro = fig_bairro.update_layout(margin=dict(l=20,r=10,t=60,b=20)) 
+    fig_bairro = fig_bairro.update_layout(margin=dict(l=20,r=10,t=70,b=20)) 
     return(fig_bairro)
 
 def grapher_local(df,selected_bairro,selected_crime):
@@ -300,7 +300,7 @@ def grapher_local(df,selected_bairro,selected_crime):
                 )
         fig_local = fig_local.update_layout(
             height=700,  # Ajuste a altura do gráfico
-            margin=dict(l=20,r=10,t=60,b=20),  # Ajuste as margens para melhor visualização
+            margin=dict(l=20,r=10,t=70,b=20),  # Ajuste as margens para melhor visualização
             title=dict(
                 text=f"<span style='font-size: 13px; color:dimgray;'><b>Perfil dos locais de crimes de Porto Alegre</b></span><br>"
                 + f"<span style='font-size: 12px; color: gray;'>Participação por local no total de crimes de todos os bairros"
@@ -345,14 +345,14 @@ def grapher_local(df,selected_bairro,selected_crime):
                 text=f"<span style='font-size: 13px; color:dimgray;'><b>Perfil de locais de crime de {selected_bairro} comparado com todos os bairros</b></span><br>"
                 + f"<span style='font-size: 12px; color: gray;'>Participação por local no número total de incidentes de {selected_crime or 'todos os tipos'}"
             ),
-            height=700,  # Ajuste a altura do gráfico
-            margin=dict(l=20,r=10,t=60,b=20),  # Ajuste as margens para melhor visualização
+            #height=700,  # Ajuste a altura do gráfico
+            margin=dict(l=20,r=10,t=70,b=20),  # Ajuste as margens para melhor visualização
             xaxis=dict(showticklabels=False),
             legend=dict(
                     title="Legenda",
                     orientation="h",       # Horizontal
                     yanchor="bottom",      # Alinhado ao fundo
-                    y=1,                 # Ajuste vertical (acima do gráfico)
+                    y=0.9,                 # Ajuste vertical (acima do gráfico)
                     xanchor="left",      # Centralizado
                     x=0.5                  # Ajuste horizontal
                 )
@@ -393,7 +393,7 @@ def grapher_tipo(df,selected_bairro):
                 text="<span style='font-size: 13px; color:dimgray;'><b>Número total de incidentes por tipo de crime em todos os bairros</b></span>",
             ),
             height=700,  # Ajuste a altura do gráfico
-            margin=dict(l=20,r=10,t=60,b=20),  # Ajuste as margens para melhor visualização
+            margin=dict(l=20,r=10,t=70,b=20),  # Ajuste as margens para melhor visualização
             xaxis=dict(showticklabels=False)
         )
 
@@ -437,7 +437,7 @@ def grapher_tipo(df,selected_bairro):
                 ),
             yaxis={"dtick":1},
             height=700,  # Ajuste a altura do gráfico
-            margin=dict(l=20,r=10,t=60,b=20),  # Ajuste as margens para melhor visualização
+            margin=dict(l=20,r=10,t=70,b=20),  # Ajuste as margens para melhor visualização
             xaxis=dict(showticklabels=False),
             #bargap = 0.02
             legend=dict(
@@ -489,7 +489,7 @@ def grapher_tempo(df, x_col, selected_crime, selected_bairro, selected_tempo):
             plot_bgcolor="white",
             hovermode='x unified',
             legend_title="Tipo" if selected_bairro else None,
-            margin=dict(l=20,r=10,t=60,b=20),
+            margin=dict(l=20,r=10,t=70,b=20),
             legend=dict(
                 title="Legenda",
                 orientation="h",       # Horizontal
@@ -524,7 +524,7 @@ def grapher_tempo(df, x_col, selected_crime, selected_bairro, selected_tempo):
             plot_bgcolor="white",
             hovermode='x unified',
             legend_title="Tipo" if selected_bairro else None,
-            margin=dict(l=20,r=10,t=60,b=20),
+            margin=dict(l=20,r=10,t=70,b=20),
             legend=dict(
                 title="Legenda",
                 orientation="h",       # Horizontal
