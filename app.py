@@ -678,13 +678,13 @@ app.layout = dbc.Container(
             [
                 dbc.Col(
                     dbc.Card(
-                        dcc.Graph(figure=fig_tipo, id="graph_tipo", responsive=True, style={"height": "60vh", "marginBottom": "5px"},config={"displayModeBar": False}),
+                        dcc.Graph(figure=fig_tipo, id="graph_tipo", responsive=True, style={"height": "65vh", "marginBottom": "5px"},config={"displayModeBar": False}),
                         style={"backgroundColor": "white", "padding": "10px", "borderRadius": "5px"}
                         ),
                         sm=11,md=5),
                 dbc.Col(
                     dbc.Card(
-                        dcc.Graph(figure=fig_local, id="graph_local", responsive=True, style={"height": "60vh", "marginBottom": "5px"},config={"displayModeBar": False}),
+                        dcc.Graph(figure=fig_local, id="graph_local", responsive=True, style={"height": "65vh", "marginBottom": "5px"},config={"displayModeBar": False}),
                         style={"backgroundColor": "white", "padding": "10px", "borderRadius": "5px"}
                         ),
                         sm=11,md=5),
