@@ -60,7 +60,7 @@ def agreg_tempo(df, selected_tempo, selected_bairro):
                 .reset_index()
                 .assign(Media=lambda x: x['Crimes'] / dias_por_ano[x['Ano']].values)
             )
-            aggregated_data= aggregated_data['Ano'].astype('category') 
+            
             return aggregated_data, 'Ano'
         
         elif selected_tempo == 'Mensal':
@@ -512,6 +512,9 @@ def grapher_tempo(df, x_col, selected_crime, selected_bairro, selected_tempo):
             dtick="M3",
             tickformat="%b\n%Y",
             ticklabelmode="period")
+    
+    if selected_tempo == 'Ano':
+        fig_tempo.update_xaxes(type='category')
     
     fig_tempo = fig_update(fig_tempo)
     fig_tempo.update_traces(
