@@ -347,7 +347,15 @@ def grapher_local(df,selected_bairro,selected_crime):
             ),
             height=700,  # Ajuste a altura do gráfico
             margin=dict(l=50, r=30, t=80, b=30),  # Ajuste as margens para melhor visualização
-            xaxis=dict(showticklabels=False)
+            xaxis=dict(showticklabels=False),
+            legend=dict(
+                    title="Legenda",
+                    orientation="h",       # Horizontal
+                    yanchor="bottom",      # Alinhado ao fundo
+                    y=1.1,                 # Ajuste vertical (acima do gráfico)
+                    xanchor="center",      # Centralizado
+                    x=0.5                  # Ajuste horizontal
+                )
             )
         
     fig_local = fig_update(fig_local)
@@ -430,8 +438,16 @@ def grapher_tipo(df,selected_bairro):
             yaxis={"dtick":1},
             height=700,  # Ajuste a altura do gráfico
             margin=dict(l=50, r=30, t=80, b=30),  # Ajuste as margens para melhor visualização
-            xaxis=dict(showticklabels=False)
+            xaxis=dict(showticklabels=False),
             #bargap = 0.02
+            legend=dict(
+            title="Legenda",
+                orientation="h",       # Horizontal
+                yanchor="bottom",      # Alinhado ao fundo
+                y=1.1,                 # Ajuste vertical (acima do gráfico)
+                xanchor="center",      # Centralizado
+                x=0.5                  # Ajuste horizontal
+            )
         )
         fig_tipo.update_yaxes(type='category')
         fig_tipo.update_traces(
@@ -474,6 +490,14 @@ def grapher_tempo(df, x_col, selected_crime, selected_bairro, selected_tempo):
             hovermode='x unified',
             legend_title="Tipo" if selected_bairro else None,
             margin=dict(l=50, r=30, t=80, b=30),
+            legend=dict(
+                title="Legenda",
+                orientation="h",       # Horizontal
+                yanchor="bottom",      # Alinhado ao fundo
+                y=1.1,                 # Ajuste vertical (acima do gráfico)
+                xanchor="center",      # Centralizado
+                x=0.5                  # Ajuste horizontal
+            ) if selected_bairro else None
         )
 
     else:
@@ -657,11 +681,11 @@ app.layout = dbc.Container(
                                 "marginTop": "5px",
                             },
                             children=[
-                                html.Button("Anual", id="btn-ano", n_clicks=0, style={"fontSize": "11px", "height": "30px"}),
-                                html.Button("Mensal", id="btn-mes-ano", n_clicks=1, style={"fontSize": "11px", "height": "30px"}),
-                                html.Button("Mês(Ano)", id="btn-mes", n_clicks=0, style={"fontSize": "11px", "height": "30px"}),
-                                html.Button("Dia da Semana", id="btn-dia-semana", n_clicks=0, style={"fontSize": "11px", "height": "30px"}),
-                                html.Button("Hora do Dia", id="btn-hora-dia", n_clicks=0, style={"fontSize": "11px", "height": "30px"}),
+                                html.Button("Anual", id="btn-ano", n_clicks=0, style={"fontSize": "10px", "height": "30px"}),
+                                html.Button("Mensal", id="btn-mes-ano", n_clicks=1, style={"fontSize": "10px", "height": "30px"}),
+                                html.Button("Mês(Ano)", id="btn-mes", n_clicks=0, style={"fontSize": "10px", "height": "30px"}),
+                                html.Button("Dia da Semana", id="btn-dia-semana", n_clicks=0, style={"fontSize": "10px", "height": "30px"}),
+                                html.Button("Hora do Dia", id="btn-hora-dia", n_clicks=0, style={"fontSize": "10px", "height": "30px"}),
                             ],
                         ),
                     ],
@@ -679,7 +703,7 @@ app.layout = dbc.Container(
                 dbc.Col(
                     dbc.Card(
                         dcc.Graph(figure=fig_tipo, id="graph_tipo", responsive=True, style={"height": "65vh", "marginBottom": "5px"},config={"displayModeBar": False}),
-                        style={"backgroundColor": "white", "padding": "10px", "borderRadius": "5px"}
+                        style={"backgroundColor": "white","marginBottom": "20px", "padding": "10px", "borderRadius": "5px"}
                         ),
                         sm=11,md=5),
                 dbc.Col(
