@@ -184,12 +184,11 @@ def agreg_tempo(df, selected_tempo, selected_bairro):
 def fig_update(fig): # Personalizações adicionais
         fig = fig.update_layout(
         plot_bgcolor='white',  # Fundo branco
-        xaxis=dict(showgrid=False),  # Remove linhas internas do eixo X
+        xaxis=dict(showgrid=False,font=dict(size=10)),  # Remove linhas internas do eixo X
         yaxis=dict(
-            showgrid=False),  # Remove linhas internas do eixo Y
-            #showticklabels=False),  # Remove linhas internas do eixo Y
-        title=dict(x=0.05, y= 0.95, font=dict(size=10), automargin=True, yref='container',xanchor='left',yanchor='top')  # Centraliza o título
-        )
+            showgrid=False,font=dict(size=10)), # Remove linhas internas do eixo Y
+        title=dict(x=0.05, y= 0.95, font=dict(size=12), automargin=True, yref='container',xanchor='left',yanchor='top'),  # Centraliza o título
+        config={"displayModeBar": False})
         return(fig)
 
 def grapher_bairro(df,selected_bairro,selected_crime):
@@ -453,7 +452,7 @@ def grapher_tempo(df, x_col, selected_crime, selected_bairro, selected_tempo):
             color="Tipo" if selected_bairro else None,  # Apenas diferencia as linhas se `selected_bairro` estiver definido
             color_discrete_map={'Todos os Bairros': 'gray', f"{selected_bairro}": 'firebrick'}
         )
-
+    
         # Atualize o layout
         fig_tempo.update_layout(
             title=dict(
@@ -505,6 +504,12 @@ def grapher_tempo(df, x_col, selected_crime, selected_bairro, selected_tempo):
     # Caso `selected_bairro` seja `None`, defina a cor manualmente para cinza
     if selected_bairro is None:
         fig_tempo.update_traces(line=dict(color="gray"))   
+    
+    if selected_tempo == 'Mensal':
+        fig_tempo.update_xaxes(
+            dtick="M1",
+            tickformat="%b\n%Y",
+            ticklabelmode="period")
     
     fig_tempo = fig_update(fig_tempo)
     fig_tempo.update_traces(
@@ -576,7 +581,7 @@ app.layout = dbc.Container(
                 ),
                 width=11,
             ),
-            style={"marginBottom": "20px","justifyContent": "center", "padding": "10px"},
+            style={"marginBottom": "20px","justifyContent": "center", "padding": "10px","borderRadius": "5px"},
         ),
 
         # Filtros (dropdowns)
@@ -587,8 +592,9 @@ app.layout = dbc.Container(
                         id="dp_1",
                         options=[{"label": bairro, "value": bairro} for bairro in sorted(df_crimes_base["CBairro"].unique())],
                         placeholder="Selecione um bairro",
+                        style={"fontSize":"11px"}
                     ),
-                    style={"backgroundColor": "#d3d3d3","fontSize": "9px", "padding": "10px", "borderRadius": "5px"},
+                    style={"backgroundColor": "#d3d3d3","padding": "10px", "borderRadius": "5px"},
                     sm=4,md=4
                 ),
                 dbc.Col(
@@ -596,8 +602,9 @@ app.layout = dbc.Container(
                         id="dp_2",
                         options=[{"label": crime, "value": crime} for crime in df_crimes_base["Crime"].unique()],
                         placeholder="Selecione um tipo de crime",
+                        style={"fontSize":"11px"}
                     ),
-                    style={"backgroundColor": "#d3d3d3","fontSize": "9px", "padding": "10px", "borderRadius": "5px"},
+                    style={"backgroundColor": "#d3d3d3","padding": "10px", "borderRadius": "5px"},
                     sm=4,md=4
                 ),
             ],
@@ -621,7 +628,7 @@ app.layout = dbc.Container(
             [
                 dbc.Col(
                     dbc.Card(
-                        dcc.Graph(figure=fig_bairro, id="graph", responsive=True, style={"height": "50vh", "marginBottom": "5px"}),
+                        dcc.Graph(figure=fig_bairro, id="graph", responsive=True, style={"height": "50vh", "marginBottom": "5px"},config={"displayModeBar": False}),
                         style={"backgroundColor": "white","marginBottom": "20px", "padding": "10px", "borderRadius": "5px"}
                     ),
                 sm=11,md=5),
@@ -633,6 +640,7 @@ app.layout = dbc.Container(
                             id="graph_tempo",
                             responsive=True,
                             style={"height": "45vh", "marginBottom": "5px"},
+                            config={"displayModeBar": False}
                         ),
                         html.Div(
                             id="button-group",
@@ -644,11 +652,11 @@ app.layout = dbc.Container(
                                 "marginTop": "5px",
                             },
                             children=[
-                                html.Button("Anual", id="btn-ano", n_clicks=1, style={"fontSize": "9px", "height": "30px"}),
-                                html.Button("Mensal", id="btn-mes-ano", n_clicks=0, style={"fontSize": "9px", "height": "30px"}),
-                                html.Button("Mês(Ano)", id="btn-mes", n_clicks=0, style={"fontSize": "9px", "height": "30px"}),
-                                html.Button("Dia da Semana", id="btn-dia-semana", n_clicks=0, style={"fontSize": "9px", "height": "30px"}),
-                                html.Button("Hora do Dia", id="btn-hora-dia", n_clicks=0, style={"fontSize": "9px", "height": "30px"}),
+                                html.Button("Anual", id="btn-ano", n_clicks=1, style={"fontSize": "11px", "height": "30px"}),
+                                html.Button("Mensal", id="btn-mes-ano", n_clicks=0, style={"fontSize": "11px", "height": "30px"}),
+                                html.Button("Mês(Ano)", id="btn-mes", n_clicks=0, style={"fontSize": "11px", "height": "30px"}),
+                                html.Button("Dia da Semana", id="btn-dia-semana", n_clicks=0, style={"fontSize": "11px", "height": "30px"}),
+                                html.Button("Hora do Dia", id="btn-hora-dia", n_clicks=0, style={"fontSize": "11px", "height": "30px"}),
                             ],
                         ),
                     ],
@@ -665,13 +673,13 @@ app.layout = dbc.Container(
             [
                 dbc.Col(
                     dbc.Card(
-                        dcc.Graph(figure=fig_tipo, id="graph_tipo", responsive=True, style={"height": "50vh", "marginBottom": "5px"}),
+                        dcc.Graph(figure=fig_tipo, id="graph_tipo", responsive=True, style={"height": "50vh", "marginBottom": "5px"},config={"displayModeBar": False}),
                         style={"backgroundColor": "white","marginBottom": "20px", "padding": "10px", "borderRadius": "5px"}
                         ),
                         sm=11,md=5),
                 dbc.Col(
                     dbc.Card(
-                        dcc.Graph(figure=fig_local, id="graph_local", responsive=True, style={"height": "50vh", "marginBottom": "5px"}),
+                        dcc.Graph(figure=fig_local, id="graph_local", responsive=True, style={"height": "50vh", "marginBottom": "5px"},config={"displayModeBar": False}),
                         style={"backgroundColor": "white", "padding": "10px", "borderRadius": "5px"}
                         ),
                         sm=11,md=5),
@@ -796,7 +804,7 @@ def update_map(selected_crime):
         color="Incidentes",
         color_continuous_scale="Reds",
         mapbox_style="carto-positron",
-        zoom=9,
+        zoom=10,
         center={"lat": -30.031831, "lon": -51.228423},
         hover_name="Bairro",  # Nome do bairro
         hover_data={"Incidentes_Formatado": True, "Incidentes": False, "Bairro": False, "location_id": False}  # Mostra o número de incidentes; oculta redundância do nome
