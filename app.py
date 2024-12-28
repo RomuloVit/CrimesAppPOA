@@ -75,12 +75,12 @@ def agreg_tempo(df, selected_tempo, selected_bairro):
             )
             
             # Alterar o formato para notação numérica do mês
-            aggregated_data['Mensal'] = pd.to_datetime(aggregated_data['Mensal'], format='%Y-%m').dt.strftime('%m/%Y')
-            aggregated_data['Mensal'] = pd.Categorical(
-                aggregated_data['Mensal'], 
-                categories=sorted(aggregated_data['Mensal'].unique(), key=lambda x: pd.to_datetime(x, format='%m/%Y')),
-                ordered=True
-            )
+            aggregated_data['Mensal'] = pd.to_datetime(aggregated_data['Mensal'], format='%Y-%m')#.dt.strftime('%m/%Y')
+#            aggregated_data['Mensal'] = pd.Categorical(
+#                aggregated_data['Mensal'], 
+#                categories=sorted(aggregated_data['Mensal'].unique(), key=lambda x: pd.to_datetime(x, format='%m/%Y')),
+#                ordered=True
+#            )
             return aggregated_data, 'Mensal'
         
         elif selected_tempo == 'Mes-Ano':
