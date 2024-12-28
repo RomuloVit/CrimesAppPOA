@@ -592,7 +592,7 @@ app.layout = dbc.Container(
                         id="dp_1",
                         options=[{"label": bairro, "value": bairro} for bairro in sorted(df_crimes_base["CBairro"].unique())],
                         placeholder="Selecione um bairro",
-                        style={"fontSize":"11px"}
+                        style={"fontSize":"13px"}
                     ),
                     style={"backgroundColor": "#d3d3d3","padding": "10px", "borderRadius": "5px"},
                     sm=4,md=4
@@ -602,7 +602,7 @@ app.layout = dbc.Container(
                         id="dp_2",
                         options=[{"label": crime, "value": crime} for crime in df_crimes_base["Crime"].unique()],
                         placeholder="Selecione um tipo de crime",
-                        style={"fontSize":"11px"}
+                        style={"fontSize":"13px"}
                     ),
                     style={"backgroundColor": "#d3d3d3","padding": "10px", "borderRadius": "5px"},
                     sm=4,md=4
@@ -673,13 +673,13 @@ app.layout = dbc.Container(
             [
                 dbc.Col(
                     dbc.Card(
-                        dcc.Graph(figure=fig_tipo, id="graph_tipo", responsive=True, style={"height": "50vh", "marginBottom": "5px"},config={"displayModeBar": False}),
+                        dcc.Graph(figure=fig_tipo, id="graph_tipo", responsive=True, style={"height": "60vh", "marginBottom": "5px"},config={"displayModeBar": False}),
                         style={"backgroundColor": "white", "padding": "10px", "borderRadius": "5px"}
                         ),
                         sm=11,md=5),
                 dbc.Col(
                     dbc.Card(
-                        dcc.Graph(figure=fig_local, id="graph_local", responsive=True, style={"height": "50vh", "marginBottom": "5px"},config={"displayModeBar": False}),
+                        dcc.Graph(figure=fig_local, id="graph_local", responsive=True, style={"height": "60vh", "marginBottom": "5px"},config={"displayModeBar": False}),
                         style={"backgroundColor": "white", "padding": "10px", "borderRadius": "5px"}
                         ),
                         sm=11,md=5),
