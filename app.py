@@ -481,8 +481,7 @@ def grapher_tempo(df, x_col, selected_crime, selected_bairro, selected_tempo):
             color="Tipo" if selected_bairro else None,
             color_discrete_map={'Todos os Bairros': 'gray', f"{selected_bairro}": 'firebrick'}
         )
-        fig_tempo.update_xaxes(type='category')
-
+        
         fig_tempo.update_layout(
             title=dict(
                 text=f"<span style='font-size: 14px; color:dimgray;'><b>Variação temporal nos incidentes de {selected_crime or 'todos os tipos'} ({selected_tempo})</b></span><br>"
@@ -490,7 +489,7 @@ def grapher_tempo(df, x_col, selected_crime, selected_bairro, selected_tempo):
                    if selected_bairro else "<span style='font-size: 13px; color: gray;'>Média diária considerando todos os bairros</span>")
             ),
             xaxis=dict(
-                tickmode='array',
+                #tickmode='array',
                 title='Periodo',
                 showgrid=False
             ),
@@ -608,7 +607,7 @@ app.layout = dbc.Container(
                     sm=4,md=4
                 ),
             ],
-            style={"marginBottom": "20px", "justifyContent": "center"},
+            style={"marginBottom": "20px", "gap":"10px", "justifyContent": "center"},
         ),
 
         # Texto explicativo
