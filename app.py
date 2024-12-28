@@ -189,7 +189,7 @@ def fig_update(fig): # Personalizações adicionais
         xaxis=dict(showgrid=False),  # Remove linhas internas do eixo X
         yaxis=dict(
             showgrid=False), # Remove linhas internas do eixo Y
-        title=dict(x=0.05, y= 1.3,  automargin=True, yref='container',xanchor='left',yanchor='top'),  # Centraliza o título
+        title=dict(x=0.05, y= 1.1,  automargin=True, yref='container',xanchor='left',yanchor='center'),  # Centraliza o título
         )
         return(fig)
 
@@ -352,7 +352,7 @@ def grapher_local(df,selected_bairro,selected_crime):
                     title="Legenda",
                     orientation="h",       # Horizontal
                     yanchor="bottom",      # Alinhado ao fundo
-                    y=1.1,                 # Ajuste vertical (acima do gráfico)
+                    y=1,                 # Ajuste vertical (acima do gráfico)
                     xanchor="left",      # Centralizado
                     x=0.5                  # Ajuste horizontal
                 )
@@ -444,7 +444,7 @@ def grapher_tipo(df,selected_bairro):
             title="Legenda",
                 orientation="h",       # Horizontal
                 yanchor="bottom",      # Alinhado ao fundo
-                y=1.1,                 # Ajuste vertical (acima do gráfico)
+                y=1,                 # Ajuste vertical (acima do gráfico)
                 xanchor="center",      # Centralizado
                 x=0.5                  # Ajuste horizontal
             )
@@ -494,7 +494,7 @@ def grapher_tempo(df, x_col, selected_crime, selected_bairro, selected_tempo):
                 title="Legenda",
                 orientation="h",       # Horizontal
                 yanchor="bottom",      # Alinhado ao fundo
-                y=1.1,                 # Ajuste vertical (acima do gráfico)
+                y=1,                 # Ajuste vertical (acima do gráfico)
                 xanchor="center",      # Centralizado
                 x=0.5                  # Ajuste horizontal
             ) if selected_bairro else None
@@ -529,7 +529,7 @@ def grapher_tempo(df, x_col, selected_crime, selected_bairro, selected_tempo):
                 title="Legenda",
                 orientation="h",       # Horizontal
                 yanchor="bottom",      # Alinhado ao fundo
-                y=1.1,                 # Ajuste vertical (acima do gráfico)
+                y=1,                 # Ajuste vertical (acima do gráfico)
                 xanchor="center",      # Centralizado
                 x=0.5                  # Ajuste horizontal
             ) if selected_bairro else None
