@@ -507,7 +507,7 @@ def grapher_tempo(df, x_col, selected_crime, selected_bairro, selected_tempo):
     
     if selected_tempo == 'Mensal':
         fig_tempo.update_xaxes(
-            dtick="M1",
+            dtick="M3",
             tickformat="%b\n%Y",
             ticklabelmode="period")
     
