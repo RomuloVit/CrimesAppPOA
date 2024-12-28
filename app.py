@@ -657,8 +657,8 @@ app.layout = dbc.Container(
                                 "marginTop": "5px",
                             },
                             children=[
-                                html.Button("Anual", id="btn-ano", n_clicks=1, style={"fontSize": "11px", "height": "30px"}),
-                                html.Button("Mensal", id="btn-mes-ano", n_clicks=0, style={"fontSize": "11px", "height": "30px"}),
+                                html.Button("Anual", id="btn-ano", n_clicks=0, style={"fontSize": "11px", "height": "30px"}),
+                                html.Button("Mensal", id="btn-mes-ano", n_clicks=1, style={"fontSize": "11px", "height": "30px"}),
                                 html.Button("Mês(Ano)", id="btn-mes", n_clicks=0, style={"fontSize": "11px", "height": "30px"}),
                                 html.Button("Dia da Semana", id="btn-dia-semana", n_clicks=0, style={"fontSize": "11px", "height": "30px"}),
                                 html.Button("Hora do Dia", id="btn-hora-dia", n_clicks=0, style={"fontSize": "11px", "height": "30px"}),
@@ -719,7 +719,7 @@ app.layout = dbc.Container(
     ]
 )
 def update_graphs(selected_bairro, selected_crime, btn_ano, btn_mes_ano, btn_mes, btn_dia_semana, btn_hora_dia):
-    selected_tempo = 'Hora do Dia'  # Valor padrão, caso nenhum botão tenha sido clicado
+    selected_tempo = 'Mensal'  # Valor padrão, caso nenhum botão tenha sido clicado
     ctx = dash.callback_context
 # Verifica qual botão foi clicado
     if ctx.triggered:
