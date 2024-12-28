@@ -189,7 +189,7 @@ def fig_update(fig): # Personalizações adicionais
         xaxis=dict(showgrid=False),  # Remove linhas internas do eixo X
         yaxis=dict(
             showgrid=False), # Remove linhas internas do eixo Y
-        title=dict(x=0.05, y= 1.1,  automargin=True, yref='container',xanchor='left',yanchor='center'),  # Centraliza o título
+        title=dict(x=0.05, y= 1,  automargin=True, yref='container',xanchor='left',yanchor='center'),  # Centraliza o título
         )
         return(fig)
 
