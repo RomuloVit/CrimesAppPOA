@@ -189,7 +189,7 @@ def fig_update(fig): # Personalizações adicionais
         xaxis=dict(showgrid=False),  # Remove linhas internas do eixo X
         yaxis=dict(
             showgrid=False), # Remove linhas internas do eixo Y
-        title=dict(x=0.05, y= 0.95,  automargin=True, yref='container',xanchor='left',yanchor='bottom'),  # Centraliza o título
+        title=dict(x=0, y= 1,  automargin=True, yref='container',xanchor='left',yanchor='bottom'),  # Centraliza o título
         )
         return(fig)
 
@@ -220,7 +220,7 @@ def grapher_bairro(df,selected_bairro,selected_crime):
         fig_bairro.update_traces(marker_color="gray")
         fig_bairro.update_layout(
         title=dict(
-        text=f"<span style='font-size: 13px; color:dimgray;'><b>Os 5 bairros de Porto Alegre com maior volume de incidentes</span></b><br><span style='font-size: 13px; color: gray;'>Considerando os incidentes de {selected_crime or 'todos os tipos de crime'}</span>",
+        text=f"<span style='font-size: 12px; color:dimgray;'><b>Os 5 bairros de Porto Alegre com maior volume de incidentes</span></b><br><span style='font-size: 11px; color: gray;'>Considerando os incidentes de {selected_crime or 'todos os tipos de crime'}</span>",
         ),
         yaxis=dict(showticklabels=False)
         )
@@ -264,7 +264,7 @@ def grapher_bairro(df,selected_bairro,selected_crime):
         )
         fig_bairro.update_layout(
         title=dict(
-        text=f"<span style='font-size: 13px; color:dimgray;'><b>{selected_bairro} comparado aos bairros com maior volume de incidentes</b></span><br><span style='font-size: 13px; color: gray;'>Considerando registros de crimes de {selected_crime or 'todos os tipos'}</span>",
+        text=f"<span style='font-size: 12px; color:dimgray;'><b>{selected_bairro} comparado aos bairros com maior volume de incidentes</b></span><br><span style='font-size: 11px; color: gray;'>Considerando registros de crimes de {selected_crime or 'todos os tipos'}</span>",
         ),
         yaxis=dict(showticklabels=False),
         showlegend=False,
@@ -302,8 +302,8 @@ def grapher_local(df,selected_bairro,selected_crime):
             height=700,  # Ajuste a altura do gráfico
             margin=dict(l=20,r=10,t=70,b=20),  # Ajuste as margens para melhor visualização
             title=dict(
-                text=f"<span style='font-size: 13px; color:dimgray;'><b>Perfil dos locais de crimes de Porto Alegre</b></span><br>"
-                + f"<span style='font-size: 12px; color: gray;'>Participação por local no total de crimes de todos os bairros"
+                text=f"<span style='font-size: 12px; color:dimgray;'><b>Perfil dos locais de crimes de Porto Alegre</b></span><br>"
+                + f"<span style='font-size: 11px; color: gray;'>Participação por local no total de crimes de todos os bairros"
             ),
             xaxis=dict(
                     showticklabels=False)
@@ -342,8 +342,8 @@ def grapher_local(df,selected_bairro,selected_crime):
         )        
         fig_local.update_layout(
             title=dict(
-                text=f"<span style='font-size: 13px; color:dimgray;'><b>Perfil de locais de crime de {selected_bairro} comparado com todos os bairros</b></span><br>"
-                + f"<span style='font-size: 12px; color: gray;'>Participação por local no número total de incidentes de {selected_crime or 'todos os tipos'}"
+                text=f"<span style='font-size: 12px; color:dimgray;'><b>Perfil de locais de crime de {selected_bairro} comparado com todos os bairros</b></span><br>"
+                + f"<span style='font-size: 11px; color: gray;'>Participação por local no número total de incidentes de {selected_crime or 'todos os tipos'}"
             ),
             #height=700,  # Ajuste a altura do gráfico
             margin=dict(l=20,r=10,t=70,b=20),  # Ajuste as margens para melhor visualização
@@ -354,8 +354,10 @@ def grapher_local(df,selected_bairro,selected_crime):
                     yanchor="bottom",      # Alinhado ao fundo
                     y=0.9,                 # Ajuste vertical (acima do gráfico)
                     xanchor="left",      # Centralizado
-                    x=0.5                  # Ajuste horizontal
-                )
+                    x=0.5,
+                    size=10                 # Ajuste horizontal
+                ),
+
             )
         
     fig_local = fig_update(fig_local)
@@ -390,7 +392,7 @@ def grapher_tipo(df,selected_bairro):
         fig_tipo.update_traces(marker_color="gray")
         fig_tipo.update_layout(
             title=dict(
-                text="<span style='font-size: 13px; color:dimgray;'><b>Número total de incidentes por tipo de crime em todos os bairros</b></span>",
+                text="<span style='font-size: 12px; color:dimgray;'><b>Número total de incidentes por tipo de crime em todos os bairros</b></span>",
             ),
             height=700,  # Ajuste a altura do gráfico
             margin=dict(l=20,r=10,t=70,b=20),  # Ajuste as margens para melhor visualização
@@ -433,7 +435,7 @@ def grapher_tipo(df,selected_bairro):
         
         fig_tipo.update_layout(
             title=dict(
-                text=f"<span style='font-size: 13px; color:dimgray;'><b>Perfil de tipos de crime de {selected_bairro} comparado com todos os bairros</b></span><br><span style='font-size: 13px; color: gray;'>Participação por tipo de crime no total de crimes do bairro</span>",
+                text=f"<span style='font-size: 12px; color:dimgray;'><b>Perfil de tipos de crime de {selected_bairro} comparado com todos os bairros</b></span><br><span style='font-size: 11px; color: gray;'>Participação por tipo de crime no total de crimes do bairro</span>",
                 ),
             yaxis={"dtick":1},
             height=700,  # Ajuste a altura do gráfico
@@ -446,7 +448,8 @@ def grapher_tipo(df,selected_bairro):
                 yanchor="bottom",      # Alinhado ao fundo
                 y=1,                 # Ajuste vertical (acima do gráfico)
                 xanchor="center",      # Centralizado
-                x=0.5                  # Ajuste horizontal
+                x=0.5,
+                size=10                  # Ajuste horizontal
             )
         )
         fig_tipo.update_yaxes(type='category')
@@ -474,9 +477,9 @@ def grapher_tempo(df, x_col, selected_crime, selected_bairro, selected_tempo):
         # Atualize o layout
         fig_tempo.update_layout(
             title=dict(
-                text=f"<span style='font-size: 13px; color:dimgray;'><b>Variação no número de incidentes de {selected_crime or 'todos os tipos'} por horário do dia</b></span><br>"
-                + (f"<span style='font-size: 12px; color: gray;'>Média de incidentes por hora em {selected_bairro} em comparação com a média de todos os bairros</span>" 
-                   if selected_bairro else "<span style='font-size: 12px; color: gray;'>Média de incidentes por hora considerando todos os bairros</span>")
+                text=f"<span style='font-size: 12px; color:dimgray;'><b>Variação no número de incidentes de {selected_crime or 'todos os tipos'} por horário do dia</b></span><br>"
+                + (f"<span style='font-size: 11px; color: gray;'>Média de incidentes por hora em {selected_bairro} em comparação com a média de todos os bairros</span>" 
+                   if selected_bairro else "<span style='font-size: 11px; color: gray;'>Média de incidentes por hora considerando todos os bairros</span>")
             ),
             xaxis=dict(
                 tickmode = 'linear',
@@ -511,9 +514,9 @@ def grapher_tempo(df, x_col, selected_crime, selected_bairro, selected_tempo):
         
         fig_tempo.update_layout(
             title=dict(
-                text=f"<span style='font-size: 13px; color:dimgray;'><b>Variação temporal nos incidentes de {selected_crime or 'todos os tipos'} ({selected_tempo})</b></span><br>"
-                + (f"<span style='font-size: 12px; color: gray;'> Média diária de {selected_bairro} em comparação com a média de todos os bairros</span>" 
-                   if selected_bairro else "<span style='font-size: 12px; color: gray;'>Média diária considerando todos os bairros</span>")
+                text=f"<span style='font-size: 12px; color:dimgray;'><b>Variação temporal nos incidentes de {selected_crime or 'todos os tipos'} ({selected_tempo})</b></span><br>"
+                + (f"<span style='font-size: 11px; color: gray;'>Média diária de {selected_bairro} em comparação com a média de todos os bairros</span>" 
+                   if selected_bairro else "<span style='font-size: 11px; color: gray;'>Média diária considerando todos os bairros</span>")
             ),
             xaxis=dict(
                 tickmode='array',
