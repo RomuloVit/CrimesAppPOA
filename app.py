@@ -613,7 +613,7 @@ app.layout = dbc.Container(
                     sm=4,md=4
                 ),
             ],
-            style={"marginBottom": "20px", "gap":"10px", "justifyContent": "center"},
+            style={"marginBottom": "20px", "gap":"20px", "justifyContent": "center"},
         ),
 
         # Texto explicativo
