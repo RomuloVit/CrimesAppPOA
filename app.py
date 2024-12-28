@@ -60,6 +60,7 @@ def agreg_tempo(df, selected_tempo, selected_bairro):
                 .reset_index()
                 .assign(Media=lambda x: x['Crimes'] / dias_por_ano[x['Ano']].values)
             )
+            aggregated_data= aggregated_data['Ano'].astype('category') 
             return aggregated_data, 'Ano'
         
         elif selected_tempo == 'Mensal':
@@ -95,9 +96,9 @@ def agreg_tempo(df, selected_tempo, selected_bairro):
                 .assign(Media=lambda x: x['Crimes'] / dias_por_mes[x['Mes-Ano']].values)
             )
             aggregated_data['Mes-Ano'] = aggregated_data['Mes-Ano'].apply(
-                lambda x: pd.to_datetime(f'2023-{x:02d}-01').strftime('%B')
+                lambda x: pd.to_datetime(f'2023-{x:02d}-01').strftime('%b')
             )
-            meses_ordenados = list(calendar.month_name[1:])
+            meses_ordenados = list(calendar.month_abbr[1:]),
             aggregated_data['Mes-Ano'] = pd.Categorical(
                 aggregated_data['Mes-Ano'], 
                 categories=meses_ordenados, 
@@ -178,6 +179,7 @@ def agreg_tempo(df, selected_tempo, selected_bairro):
         combined_data = pd.concat([all_bairros_data, selected_bairro_data], ignore_index=True)
     else:
         combined_data = all_bairros_data
+    
 
     return combined_data, x_col
 
@@ -490,7 +492,7 @@ def grapher_tempo(df, x_col, selected_crime, selected_bairro, selected_tempo):
                    if selected_bairro else "<span style='font-size: 13px; color: gray;'>Média diária considerando todos os bairros</span>")
             ),
             xaxis=dict(
-                #tickmode='array',
+                tickmode='array',
                 title='Periodo',
                 showgrid=False
             ),
