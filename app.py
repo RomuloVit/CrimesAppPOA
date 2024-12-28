@@ -461,9 +461,10 @@ def grapher_tempo(df, x_col, selected_crime, selected_bairro, selected_tempo):
                    if selected_bairro else "<span style='font-size: 13px; color: gray;'>Média de incidentes por hora considerando todos os bairros</span>")
             ),
             xaxis=dict(
-                tickmode='array',
-                tickvals=list(range(24)),
-                title='Hora do Dia',
+                tickmode = 'linear',
+                tick0 = 0,
+                dtick = 2,
+                title = 'Hora do Dia',
                 showgrid=False
             ),
             yaxis=dict(showgrid=False),
@@ -673,7 +674,7 @@ app.layout = dbc.Container(
                 dbc.Col(
                     dbc.Card(
                         dcc.Graph(figure=fig_tipo, id="graph_tipo", responsive=True, style={"height": "50vh", "marginBottom": "5px"},config={"displayModeBar": False}),
-                        style={"backgroundColor": "white","marginBottom": "20px", "padding": "10px", "borderRadius": "5px"}
+                        style={"backgroundColor": "white", "padding": "10px", "borderRadius": "5px"}
                         ),
                         sm=11,md=5),
                 dbc.Col(
