@@ -352,8 +352,8 @@ def grapher_local(df,selected_bairro,selected_crime):
                     title="Legenda",
                     orientation="h",       # Horizontal
                     yanchor="bottom",      # Alinhado ao fundo
-                    y=1.1,                 # Ajuste vertical (acima do gráfico)
-                    xanchor="center",      # Centralizado
+                    y=0.9,                 # Ajuste vertical (acima do gráfico)
+                    xanchor="left",      # Centralizado
                     x=0.5                  # Ajuste horizontal
                 )
             )
@@ -444,8 +444,8 @@ def grapher_tipo(df,selected_bairro):
             title="Legenda",
                 orientation="h",       # Horizontal
                 yanchor="bottom",      # Alinhado ao fundo
-                y=1.1,                 # Ajuste vertical (acima do gráfico)
-                xanchor="center",      # Centralizado
+                y=0.9,                 # Ajuste vertical (acima do gráfico)
+                xanchor="left",      # Centralizado
                 x=0.5                  # Ajuste horizontal
             )
         )
@@ -494,8 +494,8 @@ def grapher_tempo(df, x_col, selected_crime, selected_bairro, selected_tempo):
                 title="Legenda",
                 orientation="h",       # Horizontal
                 yanchor="bottom",      # Alinhado ao fundo
-                y=1.1,                 # Ajuste vertical (acima do gráfico)
-                xanchor="center",      # Centralizado
+                y=0.9,                 # Ajuste vertical (acima do gráfico)
+                xanchor="left",      # Centralizado
                 x=0.5                  # Ajuste horizontal
             ) if selected_bairro else None
         )
@@ -525,6 +525,14 @@ def grapher_tempo(df, x_col, selected_crime, selected_bairro, selected_tempo):
             hovermode='x unified',
             legend_title="Tipo" if selected_bairro else None,
             margin=dict(l=20,r=10,t=40,b=20),
+            legend=dict(
+                title="Legenda",
+                orientation="h",       # Horizontal
+                yanchor="bottom",      # Alinhado ao fundo
+                y=0.9,                 # Ajuste vertical (acima do gráfico)
+                xanchor="left",      # Centralizado
+                x=0.5                  # Ajuste horizontal
+            ) if selected_bairro else None
         )
 
     # Caso `selected_bairro` seja `None`, defina a cor manualmente para cinza
