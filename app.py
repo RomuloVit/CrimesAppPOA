@@ -354,10 +354,8 @@ def grapher_local(df,selected_bairro,selected_crime):
                     yanchor="bottom",      # Alinhado ao fundo
                     y=0.9,                 # Ajuste vertical (acima do gráfico)
                     xanchor="left",      # Centralizado
-                    x=0.5,
-                    size=10                 # Ajuste horizontal
-                ),
-
+                    x=0.5                  # Ajuste horizontal
+                )
             )
         
     fig_local = fig_update(fig_local)
@@ -448,8 +446,7 @@ def grapher_tipo(df,selected_bairro):
                 yanchor="bottom",      # Alinhado ao fundo
                 y=1,                 # Ajuste vertical (acima do gráfico)
                 xanchor="center",      # Centralizado
-                x=0.5,
-                size=10                  # Ajuste horizontal
+                x=0.5                  # Ajuste horizontal
             )
         )
         fig_tipo.update_yaxes(type='category')
@@ -668,6 +665,8 @@ app.layout = dbc.Container(
             [
                 dbc.Col(
                     dbc.Card(
+                        dbc.Col(html.B("Titulo - 123456789 123456789 123456789 123456789 123456789", style={"color": "#666"})),
+                        dbc.Col(html.P("Subtitulo - 123456789 123456789 123456789 123456789 123456789", style={"color": "#666", "gap": "10px"})),
                         dcc.Graph(figure=fig_bairro, id="graph", responsive=True, style={"height": "50vh", "marginBottom": "5px"},config={"displayModeBar": False}),
                         style={"backgroundColor": "white","marginBottom": "20px", "padding": "10px", "borderRadius": "5px"}
                     ),
@@ -865,4 +864,4 @@ server = app.server  # Esta linha é importante para o Gunicorn
 
 # Rodar o servidor
 if __name__ == '__main__':
-    app.run_server(debug=False)
+    app.run_server(debug=True)
