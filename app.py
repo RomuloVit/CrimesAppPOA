@@ -187,9 +187,7 @@ def fig_update(fig): # Personalizações adicionais
         fig = fig.update_layout(
         plot_bgcolor='white',  # Fundo branco
         xaxis=dict(showgrid=False),  # Remove linhas internas do eixo X
-        yaxis=dict(
-            showgrid=False), # Remove linhas internas do eixo Y
-        title=dict(x=0, y= 1,  automargin=True, yref='container',xanchor='left',yanchor='bottom'),  # Centraliza o título
+        yaxis=dict(showgrid=False) # Remove linhas internas do eixo Y
         )
         return(fig)
 
@@ -582,8 +580,14 @@ def render_explanation(selected_crime):
 external_stylesheets = [dbc.themes.BOOTSTRAP]
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
-
-
+title_bairro = ""
+stitle_bairro = ""
+title_tempo = " "
+stitle_tempo = " "
+title_tipo = " "
+stitle_tipo = " "
+title_local = " "
+stitle_local = " "
 
 fig_mapa = go.Figure()
 fig_bairro = px.bar()
@@ -665,8 +669,8 @@ app.layout = dbc.Container(
             [
                 dbc.Col(
                     dbc.Card([
-                        html.B("Titulo - 123456789 123456789 123456789 123456789 123456789", style={"color": "#666", "height": "20px", "padding": "5px"}),
-                        html.P("Subtitulo - 123456789 123456789 123456789 123456789 123456789", style={"color": "#666", "height": "20px", "padding": "5px"}),
+                        html.B(title_bairro, id="title_bairro", style={"color": "#666", "height": "20px", "padding": "2px"}),
+                        html.P(stitle_bairro, id="stitle_bairro", style={"color": "#666", "height": "20px", "padding": "2px"}),
                         dcc.Graph(figure=fig_bairro, id="graph", responsive=True, style={"height": "50vh", "marginBottom": "5px"},config={"displayModeBar": False}),
                         ],
                         style={"backgroundColor": "white","marginBottom": "20px", "padding": "10px", "borderRadius": "5px"}),
@@ -674,6 +678,8 @@ app.layout = dbc.Container(
                 dbc.Col(
                     dbc.Card(
                     [
+                        html.B(title_tempo, id="title_tempo", style={"color": "#666", "height": "20px", "padding": "2px"}),
+                        html.P(stitle_tempo, id="stitle_tempo", style={"color": "#666", "height": "20px", "padding": "2px"}),
                         dcc.Graph(
                             figure=fig_tempo,
                             id="graph_tempo",
@@ -711,14 +717,20 @@ app.layout = dbc.Container(
         dbc.Row(
             [
                 dbc.Col(
-                    dbc.Card(
+                    dbc.Card([
+                        html.B(title_tipo, id="title_tipo", style={"color": "#666", "height": "20px", "padding": "2px"}),
+                        html.P(stitle_tipo, id="stitle_tipo", style={"color": "#666", "height": "20px", "padding": "2px"}),
                         dcc.Graph(figure=fig_tipo, id="graph_tipo", responsive=True, style={"height": "65vh", "marginBottom": "5px"},config={"displayModeBar": False}),
+                        ],
                         style={"backgroundColor": "white","marginBottom": "20px", "padding": "10px", "borderRadius": "5px"}
                         ),
                         sm=11,md=5),
                 dbc.Col(
-                    dbc.Card(
+                    dbc.Card([
+                        html.B(title_local, id="title_local", style={"color": "#666", "height": "20px", "padding": "2px"}),
+                        html.P(stitle_local, id="stitle_local", style={"color": "#666", "height": "20px", "padding": "2px"}),
                         dcc.Graph(figure=fig_local, id="graph_local", responsive=True, style={"height": "65vh", "marginBottom": "5px"},config={"displayModeBar": False}),
+                        ],
                         style={"backgroundColor": "white", "padding": "10px", "borderRadius": "5px"}
                         ),
                         sm=11,md=5),
@@ -735,9 +747,17 @@ app.layout = dbc.Container(
     [
         Output('texto_bairro','children'),
         Output("markdown_explanation", "children"),
+        Output("title_bairro", "children"),
+        Output("stitle_bairro", "children"),
         Output("graph", "figure"),  
+        Output("title_tempo", "children"),
+        Output("stitle_tempo", "children"),
         Output("graph_tempo", "figure"),
+        Output("title_tipo", "children"),
+        Output("stitle_tipo", "children"),
         Output("graph_tipo", "figure"),
+        Output("title_local", "children"),
+        Output("stitle_local", "children"),
         Output("graph_local", "figure"),
         
     
@@ -782,13 +802,27 @@ def update_graphs(selected_bairro, selected_crime, btn_ano, btn_mes_ano, btn_mes
         texto_bairro=f''' ### Mostrando dados de **{selected_crime or "todos os tipos de crime"}** para **todos os bairros.**
         '''
         df_filtrado = filtered_df[filtered_df['Local Fato']!='outros']
+        
+        title_bairro = f"Os 5 bairros de Porto Alegre com maior volume de incidentes"
+        stitle_bairro = f"Considerando os incidentes de {selected_crime or 'todos os tipos de crime'}"
 
         
     else:
         texto_bairro = f''' ### Mostrando dados de **{selected_crime or "todos os tipos de crime"}** para **{selected_bairro}**.
           '''
+        title_bairro=f"{selected_bairro} comparado aos bairros com maior volume de incidentes"
+        stitle_bairro=f"Considerando registros de crimes de {selected_crime or 'todos os tipos'}"
 
     
+    title_tempo = "Título do Gráfico por Tempo"
+    stitle_tempo = "Subtítulo do Gráfico por Tempo"
+    
+    title_tipo = "Título do Gráfico por Tipo"
+    stitle_tipo = "Subtítulo do Gráfico por Tipo"
+    
+    title_local = "Título do Gráfico por Local"
+    stitle_local = "Subtítulo do Gráfico por Local"
+
     df_filtrado = filtered_df[filtered_df['Local Fato']!='outros']
     df_tempo, x_col = agreg_tempo(filtered_df,selected_tempo,selected_bairro)
     fig_tempo = grapher_tempo(df_tempo, x_col, selected_crime,selected_bairro,selected_tempo)
@@ -796,7 +830,22 @@ def update_graphs(selected_bairro, selected_crime, btn_ano, btn_mes_ano, btn_mes
     fig_local = grapher_local(df_filtrado,selected_bairro,selected_crime)
     fig_bairro = grapher_bairro(filtered_df,selected_bairro,selected_crime)
         
-    return texto_bairro, render_explanation(selected_crime), fig_bairro, fig_tempo, fig_tipo, fig_local
+    return (
+        texto_bairro,
+        render_explanation(selected_crime),
+        title_bairro,  # Título do gráfico por bairro
+        stitle_bairro,  # Subtítulo do gráfico por bairro
+        fig_bairro,  # Gráfico por bairro
+        title_tempo,
+        stitle_tempo,
+        fig_tempo,
+        title_tipo,
+        stitle_tipo,
+        fig_tipo,
+        title_local,
+        stitle_local,
+        fig_local,
+    )
 
 @app.callback(
     
