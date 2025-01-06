@@ -665,8 +665,8 @@ app.layout = dbc.Container(
             [
                 dbc.Col(
                     dbc.Card(
-                        dbc.Col(html.B("Titulo - 123456789 123456789 123456789 123456789 123456789", style={"color": "#666"})),
-                        dbc.Col(html.P("Subtitulo - 123456789 123456789 123456789 123456789 123456789", style={"color": "#666", "gap": "10px"})),
+                        html.B("Titulo - 123456789 123456789 123456789 123456789 123456789", style={"color": "#666", "height": "30px"}),
+                        html.P("Subtitulo - 123456789 123456789 123456789 123456789 123456789", style={"color": "#666", "gap": "10px","height": "20px"}),
                         dcc.Graph(figure=fig_bairro, id="graph", responsive=True, style={"height": "50vh", "marginBottom": "5px"},config={"displayModeBar": False}),
                         style={"backgroundColor": "white","marginBottom": "20px", "padding": "10px", "borderRadius": "5px"}
                     ),
