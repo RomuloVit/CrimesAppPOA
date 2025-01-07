@@ -215,7 +215,7 @@ def grapher_bairro(df,selected_bairro,selected_crime):
             labels={'Incidentes': 'Número de incidentes', 'CBairro': 'Bairro', 'Métrica': 'Legenda'},
             text="Incidentes",  # Incluir os valores no gráfico
         )
-        fig_bairro.update_traces(marker_color="gray")
+        fig_bairro.update_traces(marker_color='darkgray')
         fig_bairro.update_layout(
         yaxis=dict(showticklabels=False)
         )
@@ -246,7 +246,7 @@ def grapher_bairro(df,selected_bairro,selected_crime):
         x="NomeExibicao",  # Exibir o nome modificado
         y="Incidentes",
         color="Destaque",  # Colorir com base no destaque
-        color_discrete_map={selected_bairro: "firebrick", "Todos os bairros": "#9DC5BB"},
+        color_discrete_map={selected_bairro: "firebrick", "Todos os bairros": "darkgray"},
         hover_name="CBairro",
         labels={'Incidentes': 'Número de incidentes', 'NomeExibicao': 'Bairro', 'Métrica': 'Legenda'},
         text="Incidentes"  # Incluir os valores no gráfico
@@ -295,7 +295,7 @@ def grapher_local(df,selected_bairro,selected_crime):
             margin=dict(l=20,r=15,t=15,b=20),  # Ajuste as margens para melhor visualização
             xaxis=dict(showticklabels=False)
         )
-        fig_local.update_traces(marker_color="gray",
+        fig_local.update_traces(marker_color='darkgray',
         texttemplate='%{text:.1f}%',  # Formato do texto com uma casa decimal e símbolo de porcentagem
         hovertemplate="Local: %{y}<br>Participação: %{x:,.1f}%<extra></extra>"  # Formato do hovertext
         )
@@ -313,7 +313,7 @@ def grapher_local(df,selected_bairro,selected_crime):
         
         cores = {
             selected_bairro: 'firebrick',  # Chave corresponde ao nome do bairro
-            'Todos os bairros': '#666'
+            'Todos os bairros': 'darkgray'
         }
         
         fig_local = px.bar(
@@ -369,7 +369,7 @@ def grapher_tipo(df,selected_bairro):
         )
 
         # Personalizações
-        fig_tipo.update_traces(marker_color="gray")
+        fig_tipo.update_traces(marker_color='darkgray')
         fig_tipo.update_layout(
             height=700,  # Ajuste a altura do gráfico
             margin=dict(l=20,r=15,t=15,b=20),  # Ajuste as margens para melhor visualização
@@ -392,7 +392,7 @@ def grapher_tipo(df,selected_bairro):
         
         cores = {
             selected_bairro: 'firebrick',  # Chave corresponde ao nome do bairro
-            'Todos os bairros': '#666'
+            'Todos os bairros': 'darkgray'
         }
 
         fig_tipo = px.bar(
@@ -415,7 +415,6 @@ def grapher_tipo(df,selected_bairro):
             height=700,  # Ajuste a altura do gráfico
             margin=dict(l=20,r=15,t=15,b=20),  # Ajuste as margens para melhor visualização
             xaxis=dict(showticklabels=False),
-            #bargap = 0.02
             legend=dict(
             title="Legenda",
                 orientation="h",       # Horizontal
@@ -444,7 +443,7 @@ def grapher_tempo(df, x_col, selected_crime, selected_bairro, selected_tempo):
             x=x_col,
             y='Medias',
             color="Tipo" if selected_bairro else None,  # Apenas diferencia as linhas se `selected_bairro` estiver definido
-            color_discrete_map={'Todos os Bairros': '#666', f"{selected_bairro}": 'firebrick'}
+            color_discrete_map={'Todos os Bairros': 'darkgray', f"{selected_bairro}": 'firebrick'}
         )
     
         # Atualize o layout
@@ -477,7 +476,7 @@ def grapher_tempo(df, x_col, selected_crime, selected_bairro, selected_tempo):
             x=x_col,
             y='Medias',
             color="Tipo" if selected_bairro else None,
-            color_discrete_map={'Todos os Bairros': '#666', f"{selected_bairro}": 'firebrick'}
+            color_discrete_map={'Todos os Bairros': 'darkgray', f"{selected_bairro}": 'firebrick'}
         )
         
         fig_tempo.update_layout(
@@ -503,7 +502,7 @@ def grapher_tempo(df, x_col, selected_crime, selected_bairro, selected_tempo):
 
     # Caso `selected_bairro` seja `None`, defina a cor manualmente para cinza
     if selected_bairro is None:
-        fig_tempo.update_traces(line=dict(color="gray"))   
+        fig_tempo.update_traces(line=dict(color='darkgray'))   
     
     if selected_tempo == 'Mensal':
         fig_tempo.update_xaxes(
@@ -573,6 +572,7 @@ app.layout = dbc.Container(
             [
                 dbc.Col(html.H1("Mapa da criminalidade em Porto Alegre", style={"color": "firebrick"}), width=11),
                 dbc.Col(html.P("Dados abertos da Secretaria de Segurança Pública do estado do Rio Grande do Sul (SSP-RS)", style={"color": "#666"}), width=11),
+                dbc.Col(html.Hr(style={'borderWidth': "0.3vh", "width": "1px", "color": "darkgray","marginTop": "5px","marginBottom": "20px",})),
                 dbc.Col(html.B("Veja a distribuição espacial e temporal dos crimes cometidos nos últimos anos na capital gaúcha, e compare o perfil de crimes dos bairros.", style={"color": "#666"}), width=11),
                 dbc.Col(html.P("Este relatório interativo inclui dados dos principais tipos de delitos responsáveis pelo sentimento de insegurança e medo no cidadão, como furto, roubo e crimes que atentam contra a vida. Os dados compreendem ocorrências criminais individuais registradas pelas Polícias de Porto Alegre, e repassadas à SSP-RS, no período de outubro de 2021 até agosto de 2024. Foram considerados apenas dados com informações sobre o bairro das ocorrências, **totalizando 293.311 registros**.", style={"color": "#666", "gap": "10px"}), width=11),
             ],
@@ -588,7 +588,7 @@ app.layout = dbc.Container(
                     config={"displayModeBar": False},
                     style={"height": "50vh"}  # Altura ajustável
                 ),
-                width=11,
+                width=12,
             ),
             style={"marginBottom": "20px","justifyContent": "center", "padding": "10px","borderRadius": "5px"},
         ),
@@ -637,7 +637,7 @@ app.layout = dbc.Container(
             [
                 dbc.Col(
                     dbc.Card([
-                        html.B(title_bairro, id="title_bairro", style={"color": "#666", "height": "30px", "marginBottom": "2px", "padding": "2px", "fontSize": "12px"}),
+                        html.B(title_bairro, id="title_bairro", style={"color": "#666", "height": "30px", "marginBottom": "3px", "fontSize": "12px"}),
                         html.P(stitle_bairro, id="stitle_bairro", style={"color": "#666", "height": "25px", "fontSize": "11px"}),
                         dcc.Graph(figure=fig_bairro, id="graph", responsive=True, style={"height": "50vh", "marginBottom": "5px"},config={"displayModeBar": False}),
                         ],
@@ -646,7 +646,7 @@ app.layout = dbc.Container(
                 dbc.Col(
                     dbc.Card(
                     [
-                        html.B(title_tempo, id="title_tempo", style={"color": "#666", "height": "30px", "marginBottom": "2px", "padding": "2px", "fontSize": "12px"}),
+                        html.B(title_tempo, id="title_tempo", style={"color": "#666", "height": "30px", "marginBottom": "3px", "fontSize": "12px"}),
                         html.P(stitle_tempo, id="stitle_tempo", style={"color": "#666", "height": "25px", "fontSize": "11px"}),
                         dcc.Graph(
                             figure=fig_tempo,
@@ -686,7 +686,7 @@ app.layout = dbc.Container(
             [
                 dbc.Col(
                     dbc.Card([
-                        html.B(title_tipo, id="title_tipo", style={"color": "#666", "height": "30px", "marginBottom": "2px", "padding": "2px", "fontSize": "12px"}),
+                        html.B(title_tipo, id="title_tipo", style={"color": "#666", "height": "30px", "marginBottom": "3px", "fontSize": "12px"}),
                         html.P(stitle_tipo, id="stitle_tipo", style={"color": "#666", "height": "25px", "fontSize": "11px"}),
                         dcc.Graph(figure=fig_tipo, id="graph_tipo", responsive=True, style={"height": "65vh", "marginBottom": "5px"},config={"displayModeBar": False}),
                         ],
@@ -695,7 +695,7 @@ app.layout = dbc.Container(
                         sm=11,md=5),
                 dbc.Col(
                     dbc.Card([
-                        html.B(title_local, id="title_local", style={"color": "#666", "height": "30px", "marginBottom": "2px", "padding": "2px", "fontSize": "12px"}),
+                        html.B(title_local, id="title_local", style={"color": "#666", "height": "30px", "marginBottom": "3px", "fontSize": "12px"}),
                         html.P(stitle_local, id="stitle_local", style={"color": "#666", "height": "25px", "fontSize": "11px"}),
                         dcc.Graph(figure=fig_local, id="graph_local", responsive=True, style={"height": "65vh", "marginBottom": "5px"},config={"displayModeBar": False}),
                         ],
@@ -707,7 +707,7 @@ app.layout = dbc.Container(
         ),
     ],
     fluid=True,
-    style={"backgroundColor": "darkgray", "padding": "25px"},
+    style={"backgroundColor": "darkgray", "padding": "20px"},
 )
 
 
