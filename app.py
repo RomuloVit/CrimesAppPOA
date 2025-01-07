@@ -707,9 +707,9 @@ app.layout = dbc.Container(
         ),
         dbc.Row(
             dbc.Col([
-                html.P("Rômulo Vitória - Análise e Ciência de Dados", style={"color": "#666", "height": "25px", "fontSize": "12px"}),
-                html.P("Contato: romulovitoria@gmail.com", style={"color": "#666", "height": "25px", "fontSize": "12px"}),
-                html.A("Linkedin", href="https://www.linkedin.com/in/r%C3%B4mulo-vit%C3%B3ria-72602529a/", target="_blank")
+                html.P("Rômulo Vitória - Análise e Ciência de Dados", style={"color": "#666","justifyContent": "center", "fontSize": "12px"}),
+                html.P("Contato: romulovitoria@gmail.com", style={"color": "#666","justifyContent": "center", "fontSize": "12px"}),
+                html.A("Linkedin", href="https://www.linkedin.com/in/r%C3%B4mulo-vit%C3%B3ria-72602529a/",style={"color": "#666","justifyContent": "center", "fontSize": "12px"}, target="_blank")
                 ],
                 width=12,
             ),
