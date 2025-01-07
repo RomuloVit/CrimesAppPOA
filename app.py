@@ -17,7 +17,7 @@ data_geo_base = gpd.read_file("data_geo.shp")
 data_geo_base["geometry"] = data_geo_base.simplify(200)
 
 def format_name(name):
-    exceptions = {"de", "do", "da", "dos", "das"}
+    exceptions = {"e", "de", "do", "da", "dos", "das"}
     words = name.split()
     formatted_words = [
         word.capitalize() if word.lower() not in exceptions else word.lower()
@@ -217,9 +217,6 @@ def grapher_bairro(df,selected_bairro,selected_crime):
         )
         fig_bairro.update_traces(marker_color="gray")
         fig_bairro.update_layout(
-        title=dict(
-        text=f"<span style='font-size: 12px; color:dimgray;'><b>Os 5 bairros de Porto Alegre com maior volume de incidentes</span></b><br><span style='font-size: 11px; color: gray;'>Considerando os incidentes de {selected_crime or 'todos os tipos de crime'}</span>",
-        ),
         yaxis=dict(showticklabels=False)
         )
 
@@ -261,9 +258,6 @@ def grapher_bairro(df,selected_bairro,selected_crime):
         textfont=dict(size=10),  # Define o tamanho da fonte dos textos
         )
         fig_bairro.update_layout(
-        title=dict(
-        text=f"<span style='font-size: 12px; color:dimgray;'><b>{selected_bairro} comparado aos bairros com maior volume de incidentes</b></span><br><span style='font-size: 11px; color: gray;'>Considerando registros de crimes de {selected_crime or 'todos os tipos'}</span>",
-        ),
         yaxis=dict(showticklabels=False),
         showlegend=False,
     )
@@ -299,12 +293,7 @@ def grapher_local(df,selected_bairro,selected_crime):
         fig_local = fig_local.update_layout(
             height=700,  # Ajuste a altura do gráfico
             margin=dict(l=20,r=10,t=70,b=20),  # Ajuste as margens para melhor visualização
-            title=dict(
-                text=f"<span style='font-size: 12px; color:dimgray;'><b>Perfil dos locais de crimes de Porto Alegre</b></span><br>"
-                + f"<span style='font-size: 11px; color: gray;'>Participação por local no total de crimes de todos os bairros"
-            ),
-            xaxis=dict(
-                    showticklabels=False)
+            xaxis=dict(showticklabels=False)
         )
         fig_local.update_traces(marker_color="gray",
         texttemplate='%{text:.1f}%',  # Formato do texto com uma casa decimal e símbolo de porcentagem
@@ -339,10 +328,6 @@ def grapher_local(df,selected_bairro,selected_crime):
         labels={'Valor': 'Participação (%)', 'Crime': 'Tipo de Crime', 'Métrica': 'Legenda'},
         )        
         fig_local.update_layout(
-            title=dict(
-                text=f"<span style='font-size: 12px; color:dimgray;'><b>Perfil de locais de crime de {selected_bairro} comparado com todos os bairros</b></span><br>"
-                + f"<span style='font-size: 11px; color: gray;'>Participação por local no número total de incidentes de {selected_crime or 'todos os tipos'}"
-            ),
             #height=700,  # Ajuste a altura do gráfico
             margin=dict(l=20,r=10,t=70,b=20),  # Ajuste as margens para melhor visualização
             xaxis=dict(showticklabels=False),
@@ -387,9 +372,6 @@ def grapher_tipo(df,selected_bairro):
         # Personalizações
         fig_tipo.update_traces(marker_color="gray")
         fig_tipo.update_layout(
-            title=dict(
-                text="<span style='font-size: 12px; color:dimgray;'><b>Número total de incidentes por tipo de crime em todos os bairros</b></span>",
-            ),
             height=700,  # Ajuste a altura do gráfico
             margin=dict(l=20,r=10,t=70,b=20),  # Ajuste as margens para melhor visualização
             xaxis=dict(showticklabels=False)
@@ -430,9 +412,6 @@ def grapher_tipo(df,selected_bairro):
         # Personalizações
         
         fig_tipo.update_layout(
-            title=dict(
-                text=f"<span style='font-size: 12px; color:dimgray;'><b>Perfil de tipos de crime de {selected_bairro} comparado com todos os bairros</b></span><br><span style='font-size: 11px; color: gray;'>Participação por tipo de crime no total de crimes do bairro</span>",
-                ),
             yaxis={"dtick":1},
             height=700,  # Ajuste a altura do gráfico
             margin=dict(l=20,r=10,t=70,b=20),  # Ajuste as margens para melhor visualização
@@ -471,11 +450,6 @@ def grapher_tempo(df, x_col, selected_crime, selected_bairro, selected_tempo):
     
         # Atualize o layout
         fig_tempo.update_layout(
-            title=dict(
-                text=f"<span style='font-size: 12px; color:dimgray;'><b>Variação no número de incidentes de {selected_crime or 'todos os tipos'} por horário do dia</b></span><br>"
-                + (f"<span style='font-size: 11px; color: gray;'>Média de incidentes por hora em {selected_bairro} em comparação com a média de todos os bairros</span>" 
-                   if selected_bairro else "<span style='font-size: 11px; color: gray;'>Média de incidentes por hora considerando todos os bairros</span>")
-            ),
             xaxis=dict(
                 tickmode = 'linear',
                 tick0 = 0,
@@ -508,11 +482,6 @@ def grapher_tempo(df, x_col, selected_crime, selected_bairro, selected_tempo):
         )
         
         fig_tempo.update_layout(
-            title=dict(
-                text=f"<span style='font-size: 12px; color:dimgray;'><b>Variação temporal nos incidentes de {selected_crime or 'todos os tipos'} ({selected_tempo})</b></span><br>"
-                + (f"<span style='font-size: 11px; color: gray;'>Média diária de {selected_bairro} em comparação com a média de todos os bairros</span>" 
-                   if selected_bairro else "<span style='font-size: 11px; color: gray;'>Média diária considerando todos os bairros</span>")
-            ),
             xaxis=dict(
                 tickmode='array',
                 title='Periodo',
@@ -806,22 +775,30 @@ def update_graphs(selected_bairro, selected_crime, btn_ano, btn_mes_ano, btn_mes
         title_bairro = f"Os 5 bairros de Porto Alegre com maior volume de incidentes"
         stitle_bairro = f"Considerando os incidentes de {selected_crime or 'todos os tipos de crime'}"
 
-        
+        title_tempo = f"Variação no número de incidentes de {selected_crime or 'todos os tipos'} por horário do dia" if selected_tempo == "Hora do Dia" else f"Variação temporal nos incidentes de {selected_crime or 'todos os tipos'} ({selected_tempo})"
+        stitle_tempo = f"Média de incidentes por hora considerando todos os bairros" if selected_tempo == "Hora do Dia" else f"Média diária de incidentes considerando todos os bairros"
+
+        title_tipo = f"Número total de incidentes por tipo de crime em todos os bairros"
+        stitle_tipo = f" "
+    
+        title_local = f"O perfil dos locais de crimes nos bairros de Porto Alegre"
+        stitle_local = f"Participação por local no total de crimes de todos os bairros"
+             
     else:
         texto_bairro = f''' ### Mostrando dados de **{selected_crime or "todos os tipos de crime"}** para **{selected_bairro}**.
           '''
-        title_bairro=f"{selected_bairro} comparado aos bairros com maior volume de incidentes"
+        title_bairro=f"{selected_bairro} em comparação aos bairros com o maior volume de incidentes"
         stitle_bairro=f"Considerando registros de crimes de {selected_crime or 'todos os tipos'}"
 
     
-    title_tempo = "Título do Gráfico por Tempo"
-    stitle_tempo = "Subtítulo do Gráfico por Tempo"
+        title_tempo = f"Variação no número de incidentes de {selected_crime or 'todos os tipos'} por horário do dia" if selected_tempo == "Hora do Dia" else f"Variação temporal nos incidentes de {selected_crime or 'todos os tipos'} ({selected_tempo})"
+        stitle_tempo = f"Média de incidentes por hora em {selected_bairro} em comparação com a média de todos os bairros" if selected_tempo == "Hora do Dia" else f"Média diária de {selected_bairro} em comparação com a média de todos os bairros"
     
-    title_tipo = "Título do Gráfico por Tipo"
-    stitle_tipo = "Subtítulo do Gráfico por Tipo"
+        title_tipo = f"Perfil de tipos de crime de {selected_bairro} comparado com todos os bairros"
+        stitle_tipo = f"Participação por tipo de crime no total de crimes do bairro"
     
-    title_local = "Título do Gráfico por Local"
-    stitle_local = "Subtítulo do Gráfico por Local"
+        title_local = f"Perfil de locais de crime de {selected_bairro} comparado com todos os bairros"
+        stitle_local = f"Participação por local no número total de incidentes de {selected_crime or 'todos os tipos'}"
 
     df_filtrado = filtered_df[filtered_df['Local Fato']!='outros']
     df_tempo, x_col = agreg_tempo(filtered_df,selected_tempo,selected_bairro)
