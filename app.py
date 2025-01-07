@@ -313,7 +313,7 @@ def grapher_local(df,selected_bairro,selected_crime):
         
         cores = {
             selected_bairro: 'firebrick',  # Chave corresponde ao nome do bairro
-            'Todos os bairros': '#9DC5BB'
+            'Todos os bairros': '#666'
         }
         
         fig_local = px.bar(
@@ -328,7 +328,6 @@ def grapher_local(df,selected_bairro,selected_crime):
         labels={'Valor': 'Participação (%)', 'Crime': 'Tipo de Crime', 'Métrica': 'Legenda'},
         )        
         fig_local.update_layout(
-            #height=700,  # Ajuste a altura do gráfico
             margin=dict(l=20,r=15,t=15,b=20),  # Ajuste as margens para melhor visualização
             xaxis=dict(showticklabels=False),
             legend=dict(
@@ -393,7 +392,7 @@ def grapher_tipo(df,selected_bairro):
         
         cores = {
             selected_bairro: 'firebrick',  # Chave corresponde ao nome do bairro
-            'Todos os bairros': '#9DC5BB'
+            'Todos os bairros': '#666''Todos os bairros':'#666'
         }
 
         fig_tipo = px.bar(
@@ -445,7 +444,7 @@ def grapher_tempo(df, x_col, selected_crime, selected_bairro, selected_tempo):
             x=x_col,
             y='Medias',
             color="Tipo" if selected_bairro else None,  # Apenas diferencia as linhas se `selected_bairro` estiver definido
-            color_discrete_map={'Todos os Bairros': 'gray', f"{selected_bairro}": 'firebrick'}
+            color_discrete_map={'Todos os Bairros': '#666', f"{selected_bairro}": 'firebrick'}
         )
     
         # Atualize o layout
@@ -478,7 +477,7 @@ def grapher_tempo(df, x_col, selected_crime, selected_bairro, selected_tempo):
             x=x_col,
             y='Medias',
             color="Tipo" if selected_bairro else None,
-            color_discrete_map={'Todos os Bairros': 'gray', f"{selected_bairro}": 'firebrick'}
+            color_discrete_map={'Todos os Bairros': '#666', f"{selected_bairro}": 'firebrick'}
         )
         
         fig_tempo.update_layout(
@@ -638,7 +637,7 @@ app.layout = dbc.Container(
             [
                 dbc.Col(
                     dbc.Card([
-                        html.B(title_bairro, id="title_bairro", style={"color": "#666", "height": "30px", "marginBottom": "1px", "padding": "2px", "fontSize": "12px"}),
+                        html.B(title_bairro, id="title_bairro", style={"color": "#666", "height": "30px", "marginBottom": "2px", "padding": "2px", "fontSize": "12px"}),
                         html.P(stitle_bairro, id="stitle_bairro", style={"color": "#666", "height": "25px", "fontSize": "11px"}),
                         dcc.Graph(figure=fig_bairro, id="graph", responsive=True, style={"height": "50vh", "marginBottom": "5px"},config={"displayModeBar": False}),
                         ],
@@ -647,7 +646,7 @@ app.layout = dbc.Container(
                 dbc.Col(
                     dbc.Card(
                     [
-                        html.B(title_tempo, id="title_tempo", style={"color": "#666", "height": "30px", "marginBottom": "1px", "padding": "2px", "fontSize": "12px"}),
+                        html.B(title_tempo, id="title_tempo", style={"color": "#666", "height": "30px", "marginBottom": "2px", "padding": "2px", "fontSize": "12px"}),
                         html.P(stitle_tempo, id="stitle_tempo", style={"color": "#666", "height": "25px", "fontSize": "11px"}),
                         dcc.Graph(
                             figure=fig_tempo,
@@ -666,11 +665,11 @@ app.layout = dbc.Container(
                                 "marginTop": "5px",
                             },
                             children=[
-                                html.Button("Anual", id="btn-ano", n_clicks=0, style={"fontSize": "10px", "height": "31px"}),
-                                html.Button("Mensal", id="btn-mes-ano", n_clicks=1, style={"fontSize": "10px", "height": "31px"}),
-                                html.Button("Mês(Ano)", id="btn-mes", n_clicks=0, style={"fontSize": "10px", "height": "31px"}),
-                                html.Button("Dia da Semana", id="btn-dia-semana", n_clicks=0, style={"fontSize": "10px", "height": "31px"}),
-                                html.Button("Hora do Dia", id="btn-hora-dia", n_clicks=0, style={"fontSize": "10px", "height": "31px"}),
+                                html.Button("Anual", id="btn-ano", n_clicks=0, style={"fontSize": "10px", "height": "33px"}),
+                                html.Button("Mensal", id="btn-mes-ano", n_clicks=1, style={"fontSize": "10px", "height": "33px"}),
+                                html.Button("Mês(Ano)", id="btn-mes", n_clicks=0, style={"fontSize": "10px", "height": "33px"}),
+                                html.Button("Dia da Semana", id="btn-dia-semana", n_clicks=0, style={"fontSize": "10px", "height": "33px"}),
+                                html.Button("Hora do Dia", id="btn-hora-dia", n_clicks=0, style={"fontSize": "10px", "height": "33px"}),
                             ],
                         ),
                     ],
@@ -687,7 +686,7 @@ app.layout = dbc.Container(
             [
                 dbc.Col(
                     dbc.Card([
-                        html.B(title_tipo, id="title_tipo", style={"color": "#666", "height": "30px", "marginBottom": "1px", "padding": "2px", "fontSize": "12px"}),
+                        html.B(title_tipo, id="title_tipo", style={"color": "#666", "height": "30px", "marginBottom": "2px", "padding": "2px", "fontSize": "12px"}),
                         html.P(stitle_tipo, id="stitle_tipo", style={"color": "#666", "height": "25px", "fontSize": "11px"}),
                         dcc.Graph(figure=fig_tipo, id="graph_tipo", responsive=True, style={"height": "65vh", "marginBottom": "5px"},config={"displayModeBar": False}),
                         ],
@@ -696,7 +695,7 @@ app.layout = dbc.Container(
                         sm=11,md=5),
                 dbc.Col(
                     dbc.Card([
-                        html.B(title_local, id="title_local", style={"color": "#666", "height": "30px", "marginBottom": "1px", "padding": "2px", "fontSize": "12px"}),
+                        html.B(title_local, id="title_local", style={"color": "#666", "height": "30px", "marginBottom": "2px", "padding": "2px", "fontSize": "12px"}),
                         html.P(stitle_local, id="stitle_local", style={"color": "#666", "height": "25px", "fontSize": "11px"}),
                         dcc.Graph(figure=fig_local, id="graph_local", responsive=True, style={"height": "65vh", "marginBottom": "5px"},config={"displayModeBar": False}),
                         ],
@@ -708,7 +707,7 @@ app.layout = dbc.Container(
         ),
     ],
     fluid=True,
-    style={"backgroundColor": "darkgray", "padding": "10px"},
+    style={"backgroundColor": "darkgray", "padding": "25px"},
 )
 
 
