@@ -423,7 +423,7 @@ def grapher_tipo(df,selected_bairro):
                 yanchor="bottom",      # Alinhado ao fundo
                 y=1,                 # Ajuste vertical (acima do gráfico)
                 xanchor="center",      # Centralizado
-                x=0.5                  # Ajuste horizontal
+                x=0.45                  # Ajuste horizontal
             )
         )
         fig_tipo.update_yaxes(type='category')
@@ -575,7 +575,7 @@ app.layout = dbc.Container(
                 dbc.Col(html.H1("Mapa da criminalidade em Porto Alegre", style={"color": "firebrick"}), width=11),
                 dbc.Col(html.P("Dados abertos da Secretaria de Segurança Pública do estado do Rio Grande do Sul (SSP-RS)", style={"color": "#666"}), width=11),
                 dbc.Col(html.B("Veja a distribuição espacial e temporal dos crimes cometidos nos últimos anos na capital gaúcha, e compare o perfil de crimes dos bairros.", style={"color": "#666"}), width=11),
-                dbc.Col(html.P("Este relatório interativo inclui dados dos principais tipos de crimes responsáveis pelo sentimento de insegurança e medo no cidadão, como furto, roubo e outro tipos de delitos que atentam contra a vida. Os dados compreendem ocorrências criminais individuais registradas pelas Polícias de Porto Alegre, e repassadas à SSP-RS, no período de outubro de 2021 até agosto de 2024. Foram considerados apenas dados com informações sobre o bairro das ocorrências, totalizando 293.311 registros. Os incidentes podem envolver mais do que um tipo de crime (como roubo seguido de morte), de modo que a soma do número de incidentes dos tipos de crime não corresponde ao número total de incidentes. Os números podem sofrer alterações devido a demora no repasse de informações à SSP, e aos desdobramentos dos processos.", style={"color": "#666", "gap": "10px"}), width=11),
+                dbc.Col(html.P("Este relatório interativo inclui dados dos principais tipos de delitos responsáveis pelo sentimento de insegurança e medo no cidadão, como furto, roubo e crimes que atentam contra a vida. Os dados compreendem ocorrências criminais individuais registradas pelas Polícias de Porto Alegre, e repassadas à SSP-RS, no período de outubro de 2021 até agosto de 2024. Foram considerados apenas dados com informações sobre o bairro das ocorrências, **totalizando 293.311 registros**.", style={"color": "#666", "gap": "10px"}), width=11),
             ],
             style={"textAlign": "center", "marginBottom": "20px","justifyContent": "center", "padding": "20px"},
         ),
@@ -638,8 +638,8 @@ app.layout = dbc.Container(
             [
                 dbc.Col(
                     dbc.Card([
-                        html.B(title_bairro, id="title_bairro", style={"color": "#666", "height": "20px", "padding": "2px"}),
-                        html.P(stitle_bairro, id="stitle_bairro", style={"color": "#666", "height": "20px", "padding": "2px"}),
+                        html.B(title_bairro, id="title_bairro", responsive=True, style={"color": "#666", "height": "20px", "padding": "2px"}),
+                        html.P(stitle_bairro, id="stitle_bairro", responsive=True, style={"color": "#666", "height": "20px", "padding": "2px"}),
                         dcc.Graph(figure=fig_bairro, id="graph", responsive=True, style={"height": "50vh", "marginBottom": "5px"},config={"displayModeBar": False}),
                         ],
                         style={"backgroundColor": "white","marginBottom": "20px", "padding": "10px", "borderRadius": "5px"}),
@@ -647,8 +647,8 @@ app.layout = dbc.Container(
                 dbc.Col(
                     dbc.Card(
                     [
-                        html.B(title_tempo, id="title_tempo", style={"color": "#666", "height": "20px", "padding": "2px"}),
-                        html.P(stitle_tempo, id="stitle_tempo", style={"color": "#666", "height": "20px", "padding": "2px"}),
+                        html.B(title_tempo, id="title_tempo", responsive=True, style={"color": "#666", "height": "20px", "padding": "2px"}),
+                        html.P(stitle_tempo, id="stitle_tempo", responsive=True, style={"color": "#666", "height": "20px", "padding": "2px"}),
                         dcc.Graph(
                             figure=fig_tempo,
                             id="graph_tempo",
@@ -666,11 +666,11 @@ app.layout = dbc.Container(
                                 "marginTop": "5px",
                             },
                             children=[
-                                html.Button("Anual", id="btn-ano", n_clicks=0, style={"fontSize": "10px", "height": "30px"}),
-                                html.Button("Mensal", id="btn-mes-ano", n_clicks=1, style={"fontSize": "10px", "height": "30px"}),
-                                html.Button("Mês(Ano)", id="btn-mes", n_clicks=0, style={"fontSize": "10px", "height": "30px"}),
-                                html.Button("Dia da Semana", id="btn-dia-semana", n_clicks=0, style={"fontSize": "10px", "height": "30px"}),
-                                html.Button("Hora do Dia", id="btn-hora-dia", n_clicks=0, style={"fontSize": "10px", "height": "30px"}),
+                                html.Button("Anual", id="btn-ano", n_clicks=0, responsive=True, style={"fontSize": "10px", "height": "30px"}),
+                                html.Button("Mensal", id="btn-mes-ano", n_clicks=1, responsive=True, style={"fontSize": "10px", "height": "30px"}),
+                                html.Button("Mês(Ano)", id="btn-mes", n_clicks=0, responsive=True, style={"fontSize": "10px", "height": "30px"}),
+                                html.Button("Dia da Semana", id="btn-dia-semana", responsive=True, n_clicks=0, style={"fontSize": "10px", "height": "30px"}),
+                                html.Button("Hora do Dia", id="btn-hora-dia", responsive=True, n_clicks=0, style={"fontSize": "10px", "height": "30px"}),
                             ],
                         ),
                     ],
@@ -687,8 +687,8 @@ app.layout = dbc.Container(
             [
                 dbc.Col(
                     dbc.Card([
-                        html.B(title_tipo, id="title_tipo", style={"color": "#666", "height": "20px", "padding": "2px"}),
-                        html.P(stitle_tipo, id="stitle_tipo", style={"color": "#666", "height": "20px", "padding": "2px"}),
+                        html.B(title_tipo, id="title_tipo", responsive=True, style={"color": "#666", "height": "20px", "padding": "2px"}),
+                        html.P(stitle_tipo, id="stitle_tipo", responsive=True, style={"color": "#666", "height": "20px", "padding": "2px"}),
                         dcc.Graph(figure=fig_tipo, id="graph_tipo", responsive=True, style={"height": "65vh", "marginBottom": "5px"},config={"displayModeBar": False}),
                         ],
                         style={"backgroundColor": "white","marginBottom": "20px", "padding": "10px", "borderRadius": "5px"}
@@ -696,8 +696,8 @@ app.layout = dbc.Container(
                         sm=11,md=5),
                 dbc.Col(
                     dbc.Card([
-                        html.B(title_local, id="title_local", style={"color": "#666", "height": "20px", "padding": "2px"}),
-                        html.P(stitle_local, id="stitle_local", style={"color": "#666", "height": "20px", "padding": "2px"}),
+                        html.B(title_local, id="title_local", responsive=True, style={"color": "#666", "height": "20px", "padding": "2px"}),
+                        html.P(stitle_local, id="stitle_local", responsive=True, style={"color": "#666", "height": "20px", "padding": "2px"}),
                         dcc.Graph(figure=fig_local, id="graph_local", responsive=True, style={"height": "65vh", "marginBottom": "5px"},config={"displayModeBar": False}),
                         ],
                         style={"backgroundColor": "white", "padding": "10px", "borderRadius": "5px"}
@@ -890,4 +890,4 @@ server = app.server  # Esta linha é importante para o Gunicorn
 
 # Rodar o servidor
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=False)
