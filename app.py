@@ -392,7 +392,7 @@ def grapher_tipo(df,selected_bairro):
         
         cores = {
             selected_bairro: 'firebrick',  # Chave corresponde ao nome do bairro
-            'Todos os bairros': '#666''Todos os bairros':'#666'
+            'Todos os bairros': '#666'
         }
 
         fig_tipo = px.bar(
