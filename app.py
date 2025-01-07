@@ -576,7 +576,7 @@ app.layout = dbc.Container(
                 dbc.Col(html.B("Veja a distribuição espacial e temporal dos crimes cometidos nos últimos anos na capital gaúcha, e compare o perfil de crimes dos bairros.", style={"color": "#666"}), width=11),
                 dbc.Col(html.P("Este relatório interativo inclui dados dos principais tipos de delitos responsáveis pelo sentimento de insegurança e medo no cidadão, como furto, roubo e crimes que atentam contra a vida. Os dados compreendem ocorrências criminais individuais registradas pelas Polícias de Porto Alegre, e repassadas à SSP-RS, no período de outubro de 2021 até agosto de 2024. Foram considerados apenas dados com informações sobre o bairro das ocorrências, totalizando 293.311 registros.", style={"color": "#666", "gap": "10px"}), width=11),
             ],
-            style={"textAlign": "center", "marginBottom": "20px","justifyContent": "center", "padding": "20px"},
+            style={"textAlign": "center", "marginBottom": "20px","justifyContent": "center", "padding": "12px"},
         ),
 
         # Mapa na parte superior
@@ -707,13 +707,14 @@ app.layout = dbc.Container(
         ),
         dbc.Row(
             dbc.Col([
-                html.P("Rômulo Vitória - Análise e Ciência de Dados", style={"color": "#666","justifyContent": "center", "fontSize": "12px"}),
-                html.P("Contato: romulovitoria@gmail.com", style={"color": "#666","justifyContent": "center", "fontSize": "12px"}),
-                html.A("Linkedin", href="https://www.linkedin.com/in/r%C3%B4mulo-vit%C3%B3ria-72602529a/",style={"color": "#666","justifyContent": "center", "fontSize": "12px"}, target="_blank")
+                html.P("Rômulo Vitória - Análise e Ciência de Dados", style={"color": "#666","fontSize": "12px"}),
+                html.P("Contato: romulovitoria@gmail.com", style={"color": "#666","fontSize": "12px"}),
+                html.A("Linkedin", href="https://www.linkedin.com/in/r%C3%B4mulo-vit%C3%B3ria-72602529a/",style={"color": "#666", "fontSize": "12px"}, target="_blank")
                 ],
                 width=12,
             ),
-            style={"marginBottom": "20px","justifyContent": "center", "padding": "10px","borderRadius": "5px"},
+            style={"textAlign": "center","marginBottom": "5px","justifyContent": "center", "padding": "5px"},
+        
         ),    
     
     ],
