@@ -638,8 +638,8 @@ app.layout = dbc.Container(
             [
                 dbc.Col(
                     dbc.Card([
-                        html.B(title_bairro, id="title_bairro", responsive=True, style={"color": "#666", "height": "25px", "padding": "2px", "fontSize": "12px"}),
-                        html.P(stitle_bairro, id="stitle_bairro", responsive=True, style={"color": "#666", "height": "25px", "fontSize": "11px"}),
+                        html.B(title_bairro, id="title_bairro", style={"color": "#666", "height": "25px", "padding": "2px", "fontSize": "12px"}),
+                        html.P(stitle_bairro, id="stitle_bairro", style={"color": "#666", "height": "25px", "fontSize": "11px"}),
                         dcc.Graph(figure=fig_bairro, id="graph", responsive=True, style={"height": "50vh", "marginBottom": "5px"},config={"displayModeBar": False}),
                         ],
                         style={"backgroundColor": "white","marginBottom": "20px", "padding": "10px", "borderRadius": "5px"}),
@@ -647,8 +647,8 @@ app.layout = dbc.Container(
                 dbc.Col(
                     dbc.Card(
                     [
-                        html.B(title_tempo, id="title_tempo", responsive=True, style={"color": "#666", "height": "25px", "padding": "2px", "fontSize": "12px"}),
-                        html.P(stitle_tempo, id="stitle_tempo", responsive=True, style={"color": "#666", "height": "25px", "fontSize": "11px"}),
+                        html.B(title_tempo, id="title_tempo", style={"color": "#666", "height": "25px", "padding": "2px", "fontSize": "12px"}),
+                        html.P(stitle_tempo, id="stitle_tempo", style={"color": "#666", "height": "25px", "fontSize": "11px"}),
                         dcc.Graph(
                             figure=fig_tempo,
                             id="graph_tempo",
@@ -687,8 +687,8 @@ app.layout = dbc.Container(
             [
                 dbc.Col(
                     dbc.Card([
-                        html.B(title_tipo, id="title_tipo", responsive=True, style={"color": "#666", "height": "25px", "padding": "2px", "fontSize": "12px"}),
-                        html.P(stitle_tipo, id="stitle_tipo", responsive=True, style={"color": "#666", "height": "25px", "fontSize": "11px"}),
+                        html.B(title_tipo, id="title_tipo", style={"color": "#666", "height": "25px", "padding": "2px", "fontSize": "12px"}),
+                        html.P(stitle_tipo, id="stitle_tipo", style={"color": "#666", "height": "25px", "fontSize": "11px"}),
                         dcc.Graph(figure=fig_tipo, id="graph_tipo", responsive=True, style={"height": "65vh", "marginBottom": "5px"},config={"displayModeBar": False}),
                         ],
                         style={"backgroundColor": "white","marginBottom": "20px", "padding": "10px", "borderRadius": "5px"}
@@ -696,8 +696,8 @@ app.layout = dbc.Container(
                         sm=11,md=5),
                 dbc.Col(
                     dbc.Card([
-                        html.B(title_local, id="title_local", responsive=True, style={"color": "#666", "height": "25px", "padding": "2px", "fontSize": "12px"}),
-                        html.P(stitle_local, id="stitle_local", responsive=True, style={"color": "#666", "height": "25px", "fontSize": "11px"}),
+                        html.B(title_local, id="title_local", style={"color": "#666", "height": "25px", "padding": "2px", "fontSize": "12px"}),
+                        html.P(stitle_local, id="stitle_local", style={"color": "#666", "height": "25px", "fontSize": "11px"}),
                         dcc.Graph(figure=fig_local, id="graph_local", responsive=True, style={"height": "65vh", "marginBottom": "5px"},config={"displayModeBar": False}),
                         ],
                         style={"backgroundColor": "white", "padding": "10px", "borderRadius": "5px"}
