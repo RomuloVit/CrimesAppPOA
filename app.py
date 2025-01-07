@@ -574,7 +574,7 @@ app.layout = dbc.Container(
                 dbc.Col(html.P("Dados abertos da Secretaria de Segurança Pública do estado do Rio Grande do Sul (SSP-RS)", style={"color": "#666"}), width=11),
                 dbc.Col(html.Hr(style={'borderWidth': "0.3vh", "width": "1px", "color": "darkgray","marginTop": "5px","marginBottom": "20px",})),
                 dbc.Col(html.B("Veja a distribuição espacial e temporal dos crimes cometidos nos últimos anos na capital gaúcha, e compare o perfil de crimes dos bairros.", style={"color": "#666"}), width=11),
-                dbc.Col(html.P("Este relatório interativo inclui dados dos principais tipos de delitos responsáveis pelo sentimento de insegurança e medo no cidadão, como furto, roubo e crimes que atentam contra a vida. Os dados compreendem ocorrências criminais individuais registradas pelas Polícias de Porto Alegre, e repassadas à SSP-RS, no período de outubro de 2021 até agosto de 2024. Foram considerados apenas dados com informações sobre o bairro das ocorrências, **totalizando 293.311 registros**.", style={"color": "#666", "gap": "10px"}), width=11),
+                dbc.Col(html.P("Este relatório interativo inclui dados dos principais tipos de delitos responsáveis pelo sentimento de insegurança e medo no cidadão, como furto, roubo e crimes que atentam contra a vida. Os dados compreendem ocorrências criminais individuais registradas pelas Polícias de Porto Alegre, e repassadas à SSP-RS, no período de outubro de 2021 até agosto de 2024. Foram considerados apenas dados com informações sobre o bairro das ocorrências, totalizando 293.311 registros.", style={"color": "#666", "gap": "10px"}), width=11),
             ],
             style={"textAlign": "center", "marginBottom": "20px","justifyContent": "center", "padding": "20px"},
         ),
@@ -637,8 +637,8 @@ app.layout = dbc.Container(
             [
                 dbc.Col(
                     dbc.Card([
-                        html.B(title_bairro, id="title_bairro", style={"color": "#666", "height": "30px", "marginBottom": "3px", "fontSize": "12px"}),
-                        html.P(stitle_bairro, id="stitle_bairro", style={"color": "#666", "height": "25px", "fontSize": "11px"}),
+                        html.B(title_bairro, id="title_bairro", style={"color": "#666", "height": "30px", "marginBottom": "3px", "fontSize": "13px"}),
+                        html.P(stitle_bairro, id="stitle_bairro", style={"color": "#666", "height": "25px", "fontSize": "12px"}),
                         dcc.Graph(figure=fig_bairro, id="graph", responsive=True, style={"height": "50vh", "marginBottom": "5px"},config={"displayModeBar": False}),
                         ],
                         style={"backgroundColor": "white","marginBottom": "20px", "padding": "10px", "borderRadius": "5px"}),
@@ -646,8 +646,8 @@ app.layout = dbc.Container(
                 dbc.Col(
                     dbc.Card(
                     [
-                        html.B(title_tempo, id="title_tempo", style={"color": "#666", "height": "30px", "marginBottom": "3px", "fontSize": "12px"}),
-                        html.P(stitle_tempo, id="stitle_tempo", style={"color": "#666", "height": "25px", "fontSize": "11px"}),
+                        html.B(title_tempo, id="title_tempo", style={"color": "#666", "height": "30px", "marginBottom": "3px", "fontSize": "13px"}),
+                        html.P(stitle_tempo, id="stitle_tempo", style={"color": "#666", "height": "25px", "fontSize": "12px"}),
                         dcc.Graph(
                             figure=fig_tempo,
                             id="graph_tempo",
@@ -686,8 +686,8 @@ app.layout = dbc.Container(
             [
                 dbc.Col(
                     dbc.Card([
-                        html.B(title_tipo, id="title_tipo", style={"color": "#666", "height": "30px", "marginBottom": "3px", "fontSize": "12px"}),
-                        html.P(stitle_tipo, id="stitle_tipo", style={"color": "#666", "height": "25px", "fontSize": "11px"}),
+                        html.B(title_tipo, id="title_tipo", style={"color": "#666", "height": "30px", "marginBottom": "3px", "fontSize": "13px"}),
+                        html.P(stitle_tipo, id="stitle_tipo", style={"color": "#666", "height": "25px", "fontSize": "12px"}),
                         dcc.Graph(figure=fig_tipo, id="graph_tipo", responsive=True, style={"height": "65vh", "marginBottom": "5px"},config={"displayModeBar": False}),
                         ],
                         style={"backgroundColor": "white","marginBottom": "20px", "padding": "10px", "borderRadius": "5px"}
@@ -695,8 +695,8 @@ app.layout = dbc.Container(
                         sm=11,md=5),
                 dbc.Col(
                     dbc.Card([
-                        html.B(title_local, id="title_local", style={"color": "#666", "height": "30px", "marginBottom": "3px", "fontSize": "12px"}),
-                        html.P(stitle_local, id="stitle_local", style={"color": "#666", "height": "25px", "fontSize": "11px"}),
+                        html.B(title_local, id="title_local", style={"color": "#666", "height": "30px", "marginBottom": "3px", "fontSize": "13px"}),
+                        html.P(stitle_local, id="stitle_local", style={"color": "#666", "height": "25px", "fontSize": "12px"}),
                         dcc.Graph(figure=fig_local, id="graph_local", responsive=True, style={"height": "65vh", "marginBottom": "5px"},config={"displayModeBar": False}),
                         ],
                         style={"backgroundColor": "white", "padding": "10px", "borderRadius": "5px"}
@@ -864,11 +864,11 @@ def update_map(selected_crime):
     fig_mapa = px.choropleth_mapbox(
         data_geo,
         geojson=data_geo.geometry,
-        locations='location_id',
+        locations="location_id",
         color="Incidentes",
         color_continuous_scale="Reds",
         mapbox_style="carto-positron",
-        zoom=10,
+        zoom=9,
         center={"lat": -30.031831, "lon": -51.228423},
         hover_name="Bairro",  # Nome do bairro
         hover_data={"Incidentes_Formatado": True, "Incidentes": False, "Bairro": False, "location_id": False}  # Mostra o número de incidentes; oculta redundância do nome
@@ -881,6 +881,7 @@ def update_map(selected_crime):
         ticks="outside",  # Opcional, para manter os ticks externos
     ))
     fig_mapa.update_traces(hovertemplate="<b>%{hovertext}</b><br>Incidentes: %{customdata[0]}")
+    fig_mapa.update_coloraxes(colorbar_len=0.8)
 
     
     return fig_mapa
