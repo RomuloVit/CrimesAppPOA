@@ -6,6 +6,7 @@ import plotly.graph_objects as go
 import geopandas as gpd
 import pandas as pd
 import calendar
+import numpy as np
 
 
 # Carregar os dados
@@ -877,8 +878,8 @@ def update_map(selected_crime):
         data_geo,
         geojson=data_geo.geometry,
         locations="location_id",
-        color="Incidentes",
-        color_continuous_scale="Reds",
+        #color="Incidentes",
+        #color_continuous_scale="Reds",
         mapbox_style="carto-positron",
         zoom=9,
         center={"lat": -30.031831, "lon": -51.228423},
@@ -893,9 +894,22 @@ def update_map(selected_crime):
         ticks="outside",  # Opcional, para manter os ticks externos
     ))
     fig_mapa.update_traces(hovertemplate="<b>%{hovertext}</b><br>Incidentes: %{customdata[0]}")
-    fig_mapa.update_coloraxes(colorbar_len=0.8)
-
     
+
+    # Map
+    
+    color_map = "Incidentes"
+    color_scale = px.colors.sequential.Reds
+    df_quantiles = data_geo[color_map].quantile(np.linspace(0, 1, len(color_scale))).to_frame()
+    df_quantiles = round((df_quantiles - df_quantiles.min()) / (df_quantiles.max() - df_quantiles.min()) * 10000) / 10000
+    df_quantiles.iloc[-1] = 1
+    df_quantiles["colors"] = color_scale
+    df_quantiles.set_index(color_map, inplace=True)
+    color_scale = [[i, j] for i, j in df_quantiles["colors"].iteritems()]
+
+    fig_mapa.update_coloraxes(colorscale = color_scale, colorbar_len=0.8)
+
+
     return fig_mapa
 
 server = app.server  # Esta linha é importante para o Gunicorn
