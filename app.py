@@ -895,20 +895,25 @@ def update_map(selected_crime):
     ))
     fig_mapa.update_traces(hovertemplate="<b>%{hovertext}</b><br>Incidentes: %{customdata[0]}")
     
-
-    # Map
     
+    # Definir a escala de cores
     color_map = "Incidentes"
     color_scale = px.colors.sequential.Reds
-    df_quantiles = data_geo[color_map].quantile(np.linspace(0, 1, len(color_scale))).to_frame()
-    df_quantiles = round((df_quantiles - df_quantiles.min()) / (df_quantiles.max() - df_quantiles.min()) * 10000) / 10000
-    df_quantiles.iloc[-1] = 1
-    df_quantiles["colors"] = color_scale
-    df_quantiles.set_index(color_map, inplace=True)
-    color_scale = [[i, j] for i, j in df_quantiles["colors"].iteritems()]
 
-    fig_mapa.update_coloraxes(colorscale = color_scale, colorbar_len=0.8)
+    # Calcular os quantis e associar cada cor a um intervalo de valores
+    quantiles = data_geo[color_map].quantile(np.linspace(0, 1, len(color_scale)))
 
+    # Criar o color_scale com base nos quantis
+    color_scale_custom = [
+        [((quantiles.iloc[i] - quantiles.min()) / (quantiles.max() - quantiles.min())), color]
+        for i, color in enumerate(color_scale)
+    ]
+
+    # Atualizar a escala de cores no mapa
+    fig_mapa.update_coloraxes(
+        colorscale=color_scale_custom,
+        colorbar_len=0.8
+    )
 
     return fig_mapa
 
