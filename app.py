@@ -652,7 +652,7 @@ app.layout = dbc.Container(
                             figure=fig_tempo,
                             id="graph_tempo",
                             responsive=True,
-                            style={"height": "45vh", "marginBottom": "5px"},
+                            style={"height": "44vh", "marginBottom": "5px"},
                             config={"displayModeBar": False}
                         ),
                         html.Div(
@@ -902,4 +902,4 @@ server = app.server  # Esta linha é importante para o Gunicorn
 
 # Rodar o servidor
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=False)
