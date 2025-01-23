@@ -11,7 +11,7 @@ import calendar
 # Carregar os dados
 df_crimes_base = pd.read_csv('crimesPOA_15_12_24.csv')
 df_crimes = df_crimes_base.copy()
-df_crimes["Local Fato"].apply(lambda x: x.replace("estabelecimento", "est."))
+df_crimes["Local Fato"] = df_crimes["Local Fato"].apply(lambda x: x.replace("estabelecimento", "est."))
 
 # Carregar os dados
 data_geo_base = gpd.read_file("data_geo.shp")
