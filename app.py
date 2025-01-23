@@ -11,6 +11,7 @@ import calendar
 # Carregar os dados
 df_crimes_base = pd.read_csv('crimesPOA_15_12_24.csv')
 df_crimes = df_crimes_base.copy()
+df_crimes["Local Fato"].apply(lambda x: x.replace("estabelecimento", "est."))
 
 # Carregar os dados
 data_geo_base = gpd.read_file("data_geo.shp")
@@ -77,11 +78,6 @@ def agreg_tempo(df, selected_tempo, selected_bairro):
             
             # Alterar o formato para notação numérica do mês
             aggregated_data['Mensal'] = pd.to_datetime(aggregated_data['Mensal'], format='%Y-%m')#.dt.strftime('%m/%Y')
-#            aggregated_data['Mensal'] = pd.Categorical(
-#                aggregated_data['Mensal'], 
-#                categories=sorted(aggregated_data['Mensal'].unique(), key=lambda x: pd.to_datetime(x, format='%m/%Y')),
-#                ordered=True
-#            )
             return aggregated_data, 'Mensal'
         
         elif selected_tempo == 'Mes-Ano':
@@ -266,7 +262,7 @@ def grapher_bairro(df,selected_bairro,selected_crime):
 
 # Configuração do layout
     fig_bairro = fig_update(fig_bairro)
-    fig_bairro = fig_bairro.update_layout(margin=dict(l=20,r=15,t=15,b=20)) 
+    fig_bairro = fig_bairro.update_layout(margin=dict(r=10,l=10,t=10,b=10)) 
     return(fig_bairro)
 
 def grapher_local(df,selected_bairro,selected_crime):
@@ -292,7 +288,7 @@ def grapher_local(df,selected_bairro,selected_crime):
                 )
         fig_local = fig_local.update_layout(
             height=700,  # Ajuste a altura do gráfico
-            margin=dict(l=20,r=15,t=15,b=20),  # Ajuste as margens para melhor visualização
+            margin=dict(r=10,l=10,t=10,b=10),  # Ajuste as margens para melhor visualização
             xaxis=dict(showticklabels=False)
         )
         fig_local.update_traces(marker_color='darkgray',
@@ -328,7 +324,7 @@ def grapher_local(df,selected_bairro,selected_crime):
         labels={'Valor': 'Participação (%)', 'Crime': 'Tipo de Crime', 'Métrica': 'Legenda'},
         )        
         fig_local.update_layout(
-            margin=dict(l=20,r=15,t=15,b=20),  # Ajuste as margens para melhor visualização
+            margin=dict(r=10,l=10,t=10,b=10),  # Ajuste as margens para melhor visualização
             xaxis=dict(showticklabels=False),
             legend=dict(
             title="Legenda",
@@ -372,7 +368,7 @@ def grapher_tipo(df,selected_bairro):
         fig_tipo.update_traces(marker_color='darkgray')
         fig_tipo.update_layout(
             height=700,  # Ajuste a altura do gráfico
-            margin=dict(l=20,r=15,t=15,b=20),  # Ajuste as margens para melhor visualização
+            margin=dict(r=10,l=10,t=10,b=10),  # Ajuste as margens para melhor visualização
             xaxis=dict(showticklabels=False)
         )
 
@@ -413,7 +409,7 @@ def grapher_tipo(df,selected_bairro):
         fig_tipo.update_layout(
             yaxis={"dtick":1},
             height=700,  # Ajuste a altura do gráfico
-            margin=dict(l=20,r=15,t=15,b=20),  # Ajuste as margens para melhor visualização
+            margin=dict(r=10,l=10,t=10,b=10),  # Ajuste as margens para melhor visualização
             xaxis=dict(showticklabels=False),
             legend=dict(
             title="Legenda",
@@ -459,7 +455,7 @@ def grapher_tempo(df, x_col, selected_crime, selected_bairro, selected_tempo):
             plot_bgcolor="white",
             hovermode='x unified',
             legend_title="Tipo" if selected_bairro else None,
-            margin=dict(l=20,r=15,t=15,b=20),
+            margin=dict(r=10,l=10,t=10,b=10),
             legend=dict(
                 title="Legenda",
                 orientation="h",       # Horizontal
@@ -489,7 +485,7 @@ def grapher_tempo(df, x_col, selected_crime, selected_bairro, selected_tempo):
             plot_bgcolor="white",
             hovermode='x unified',
             legend_title="Tipo" if selected_bairro else None,
-            margin=dict(l=20,r=15,t=15,b=20),
+            margin=dict(r=10,l=10,t=10,b=10),
             legend=dict(
                 title="Legenda",
                 orientation="h",       # Horizontal
